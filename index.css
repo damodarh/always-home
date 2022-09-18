@@ -1,0 +1,48 @@
+.home-header{
+    background-color: #262626;
+}
+
+.logo{
+    width: 100px;
+    height: 100px;
+}
+
+body {
+    background-color: white;
+
+}
+
+ .navbar-brand{
+    color: white;
+} 
+
+ .btn{
+    color: white;
+} 
+
+.form-control{
+    align-self: center;
+}
+
+footer{
+    background-color: #262626;
+}
+
+.text-center{
+    color: white;
+}
+
+.form-control{
+    justify-content: center;
+}
+
+ /* .carousel-inner .carousel-item {
+    height: 200px;
+    width: 200px;
+}  */
+
+.card-img-top{
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
