@@ -1,0 +1,47 @@
+[
+    {
+        "title": "Lago Vista, Dallas",
+        "pricePerNight": 500,
+        "cleaningFee": 200,
+        "serviceFee": 100,
+        "amenities": "Complimentary breakfast, ",
+        "bedroom": 2,
+        "images": [
+            "Property_1.jpg",
+            "Prop1a.jpg",
+            "Prop1b.jpg"
+        ],
+        "rating": 5,
+        "avgCost": 500
+    },
+    {
+        "title": "Stigler, Oklahoma",
+        "pricePerNight": 500,
+        "cleaningFee": 200,
+        "serviceFee": 100,
+        "amenities": "Complimentary breakfast, ",
+        "bedroom": 2,
+        "images": [
+            "Property_2.jpg",
+            "Prop2a.jpg",
+            "Prop2b.jpg"
+        ],
+        "rating": 5,
+        "avgCost": 100
+    },
+    {
+        "title": "Stigler, Oklahoma",
+        "pricePerNight": 500,
+        "cleaningFee": 200,
+        "serviceFee": 100,
+        "amenities": "Complimentary breakfast, ",
+        "bedroom": 2,
+        "images": [
+            "Property_2.jpg",
+            "Prop2a.jpg",
+            "Prop2b.jpg"
+        ],
+        "rating": 5,
+        "avgCost": 100
+    }
+]

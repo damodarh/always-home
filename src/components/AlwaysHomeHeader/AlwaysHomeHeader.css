@@ -1,0 +1,22 @@
+.logo-image {
+    width: 50%;
+    height: 30%;
+}
+
+.menu-bar {
+    margin-bottom: 0px;
+    clear: None;
+}
+
+.menu-list {
+    margin-bottom: 0;
+}
+
+.logout {
+    color: black;
+    background: url(http://www.w3.org/2000/svg) no-repeat left center;
+}
+
+.text-black{
+    color: black;
+}
