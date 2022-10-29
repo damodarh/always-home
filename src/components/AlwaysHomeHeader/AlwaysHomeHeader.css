@@ -1,7 +1,8 @@
-.logo-image {
-    width: 50%;
+.navbar-brand img {
     height: 30%;
-}
+    width: 25vh;
+    float: left;
+  }
 
 .menu-bar {
     margin-bottom: 0px;
