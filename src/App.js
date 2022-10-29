@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import './App.css';
+import './App.scss';
 import Layout from './components/Layout/Layout';
 import PropertyList from './components/PropertyList/PropertyList';
 
