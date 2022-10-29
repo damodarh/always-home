@@ -11,6 +11,7 @@ const PropertyList = (props) => {
                         property={property}
                         id={index}
                         key={index}
+                        controlFavoritesList={props.controlFavoritesList}
                     />
                 ))}
             </div>

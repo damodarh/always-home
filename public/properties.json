@@ -14,7 +14,8 @@
         "rating": 4.5,
         "avgCost": 500,
         "availability": "Feb 12-17",
-        "distance": "46 miles away"
+        "distance": "46 miles away",
+        "favorite": false
     },
     {
         "title": "Stigler, Oklahoma",
@@ -31,7 +32,8 @@
         "rating": 3,
         "avgCost": 100,
         "availability": "Nov 26 - Dec 1",
-        "distance": "46 miles away"
+        "distance": "52 miles away",
+        "favorite": false
     },
     {
         "title": "Montville, New Jersey",
@@ -48,6 +50,7 @@
         "rating": 4,
         "avgCost": 100,
         "availability": "Nov 13-18",
-        "distance": "46 miles away"
+        "distance": "20 miles away",
+        "favorite": false
     }
 ]

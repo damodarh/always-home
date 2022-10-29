@@ -36,10 +36,17 @@
 
 .heart {
     display: block;
-    fill: rgba(0, 0, 0, 0.5);
     height: 24px;
     width: 24px;
     stroke: #ffffff;
     stroke-width: 2;
     overflow: visible;
+
+    &-empty{
+        fill: rgba(0, 0, 0, 0.5);
+    }
+
+    &-liked{
+        fill: rgba(240, 8, 8, 0.903);
+    }
 }

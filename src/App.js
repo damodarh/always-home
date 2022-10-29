@@ -25,6 +25,10 @@ function App() {
 
   }
 
+  const controlFavoritesList = id => {
+    setProperties(properties.map((property, index) => index === id ? {...property, favorite: !property.favorite} : property));
+  }
+
   return (
     <div className="App">
       <Layout
@@ -33,7 +37,7 @@ function App() {
       >
         <div>
           <div className='mt-3 properties'>
-            <PropertyList properties={filter(properties)} />
+            <PropertyList properties={filter(properties)} controlFavoritesList={controlFavoritesList} />
           </div>
         </div>
       </Layout>
