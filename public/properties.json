@@ -11,8 +11,10 @@
             "Prop1a.jpg",
             "Prop1b.jpg"
         ],
-        "rating": 5,
-        "avgCost": 500
+        "rating": 4.5,
+        "avgCost": 500,
+        "availability": "Feb 12-17",
+        "distance": "46 miles away"
     },
     {
         "title": "Stigler, Oklahoma",
@@ -26,22 +28,26 @@
             "Prop2a.jpg",
             "Prop2b.jpg"
         ],
-        "rating": 5,
-        "avgCost": 100
+        "rating": 3,
+        "avgCost": 100,
+        "availability": "Nov 26 - Dec 1",
+        "distance": "46 miles away"
     },
     {
-        "title": "Stigler, Oklahoma",
-        "pricePerNight": 500,
-        "cleaningFee": 200,
-        "serviceFee": 100,
-        "amenities": "Complimentary breakfast, ",
+        "title": "Montville, New Jersey",
+        "pricePerNight": 1000,
+        "cleaningFee": 300,
+        "serviceFee": 200,
+        "amenities": "Airport shuttle, valet parking",
         "bedroom": 2,
         "images": [
             "Property_2.jpg",
             "Prop2a.jpg",
             "Prop2b.jpg"
         ],
-        "rating": 5,
-        "avgCost": 100
+        "rating": 4,
+        "avgCost": 100,
+        "availability": "Nov 13-18",
+        "distance": "46 miles away"
     }
 ]

@@ -5,7 +5,7 @@ const Search = (props) => {
     return (
         <div className="input-group">
             <input
-                className="form-control border-end-0 border rounded-pill"
+                className="form-control border-end-0 border rounded-pill input-box-shadow"
                 type="search"
                 placeholder="Search..."
                 value={props.searchText}

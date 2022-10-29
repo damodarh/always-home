@@ -12,9 +12,34 @@
     cursor: pointer;
 }
 
-.card-add-ons{
+.card-add-ons {
     width: 25%;
     padding-left: 0;
     padding-right: 0;
     margin-left: 2rem;
+}
+
+.heart-button {
+    border-width: 1px;
+    position: absolute;
+    z-index: 2;
+    top: 3%;
+    left: 86%;
+    border-style: solid;
+    background-color: transparent;
+    border-radius: 50%;
+    border: none;
+    transition: transform 0.25s ease;
+    margin: -2px 0 0;
+    padding: 2px 0 0 0;
+}
+
+.heart {
+    display: block;
+    fill: rgba(0, 0, 0, 0.5);
+    height: 24px;
+    width: 24px;
+    stroke: #ffffff;
+    stroke-width: 2;
+    overflow: visible;
 }
