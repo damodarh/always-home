@@ -13,4 +13,18 @@
     .dot {
         margin: 8px 8px 0px !important;
     }
+    .prop-detail-section {
+        padding-top: 48px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid #ddd;
+    }
+    .property-host {
+        font-size: 20px;
+        font-weight: 600;
+        margin: 0;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    }
+    .list-group-item {
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    }
 }

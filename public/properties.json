@@ -10,6 +10,8 @@
         "serviceFee": 100,
         "amenities": "Complimentary breakfast, ",
         "bedroom": 2,
+        "beds": 1,
+        "bath": 1,
         "images": [
             "Property_1.jpg",
             "Prop1a.jpg",
@@ -33,6 +35,8 @@
         "serviceFee": 100,
         "amenities": "Complimentary breakfast, ",
         "bedroom": 2,
+        "beds": 1,
+        "bath": 1,
         "images": [
             "Property_2.jpg",
             "Prop2a.jpg",
@@ -55,6 +59,8 @@
         "serviceFee": 200,
         "amenities": "Airport shuttle, valet parking",
         "bedroom": 2,
+        "beds": 1,
+        "bath": 1,
         "images": [
             "Property_2.jpg",
             "Prop2a.jpg",
