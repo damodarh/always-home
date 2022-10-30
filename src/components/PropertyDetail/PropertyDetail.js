@@ -26,14 +26,14 @@ const PropertyDetail = (props) => {
                     </div>
                 </section>
             </div>
-            <div class="row">
-                <div class="col-lg-6" >
+            <div className="row">
+                <div className="col-lg-6" >
                     <img src={`img/${property.images[0]}`} className='rounded title-image' alt='main' />
                 </div>
-                <div class="col-lg-6 ps-0">
-                    <div class="row h-100">
-                        {property.images.map(image => {
-                            return <div class="col-md-6">
+                <div className="col-lg-6 ps-0">
+                    <div className="row h-100">
+                        {property.images.map((image, id) => {
+                            return <div className="col-md-6"  key={id}>
                                 <img src={`img/${image}`} className='rounded sub-image' alt='other' />
                             </div>
                         })}
@@ -47,10 +47,10 @@ const PropertyDetail = (props) => {
                             Entire home hosted by XYZ
                         </h2>
                     </div>
-                    <ul class="list-group list-group-horizontal">
-                        <li class="list-group-item border-0 ps-0">{`${property.bedroom} bedroom${property.bedroom > 1 ? 's' : ''}`}</li>
-                        <li class="list-group-item border-0 ps-0">{`${property.beds} bed${property.beds > 1 ? 's' : ''}`}</li>
-                        <li class="list-group-item border-0 ps-0">{`${property.bath} bath${property.bath > 1 ? 's' : ''}`}</li>
+                    <ul className="list-group list-group-horizontal">
+                        <li className="list-group-item border-0 ps-0">{`${property.bedroom} bedroom${property.bedroom > 1 ? 's' : ''}`}</li>
+                        <li className="list-group-item border-0 ps-0">{`${property.beds} bed${property.beds > 1 ? 's' : ''}`}</li>
+                        <li className="list-group-item border-0 ps-0">{`${property.bath} bath${property.bath > 1 ? 's' : ''}`}</li>
                     </ul>
                 </section>
             </div>
@@ -59,8 +59,8 @@ const PropertyDetail = (props) => {
                     <h2 className='property-headings mb-3'>
                         Amenities
                     </h2>
-                    <ul class="card-columns">
-                        {property.amenities.map(amenity => <li className='amenity'>{amenity}</li>)}
+                    <ul className="card-columns">
+                        {property.amenities.map((amenity, index) => <li className='amenity' key={index}>{amenity}</li>)}
                     </ul>
                 </div>
             </div>
