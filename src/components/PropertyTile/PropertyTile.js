@@ -53,7 +53,7 @@ const PropertyTile = (props) => {
             <div className="card-body">
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item border-0">
-                        <span><b>{property.title}</b></span>
+                        <span><b>{property.city}, {property.state}</b></span>
                         <span className="float-end">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 className="bi bi-star-fill" viewBox="0 0 16 16">

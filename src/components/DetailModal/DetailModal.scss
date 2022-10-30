@@ -15,8 +15,6 @@
   .modal-body {
     height: 90vh;
     max-height: 90vh;
-  }
-  /*Sets the maximum height of the modal image to 69% of the screen height*/
-  .modal-body img {
-    max-height: 69vh;
+    padding-left: 5vh;
+    padding-right: 5vh;
   }
