@@ -18,7 +18,7 @@
         padding-bottom: 24px;
         border-bottom: 1px solid #ddd;
     }
-    .property-host {
+    .property-headings {
         font-size: 20px;
         font-weight: 600;
         margin: 0;
@@ -27,4 +27,10 @@
     .list-group-item {
         font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
     }
+    .card-columns {
+        column-count: 3;
+     }
+     .amenity{
+        font-size: 16px;
+     }
 }

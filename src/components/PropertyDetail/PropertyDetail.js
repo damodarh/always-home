@@ -1,7 +1,7 @@
 import React from 'react';
 import './PropertyDetail.scss';
 
-const ProeprtyDetail = (props) => {
+const PropertyDetail = (props) => {
 
     const property = { ...props.property };
 
@@ -28,13 +28,13 @@ const ProeprtyDetail = (props) => {
             </div>
             <div class="row">
                 <div class="col-lg-6" >
-                    <img src={`img/${property.images[0]}`} className='rounded title-image' />
+                    <img src={`img/${property.images[0]}`} className='rounded title-image' alt='main' />
                 </div>
                 <div class="col-lg-6 ps-0">
                     <div class="row h-100">
                         {property.images.map(image => {
                             return <div class="col-md-6">
-                                <img src={`img/${image}`} className='rounded sub-image' />
+                                <img src={`img/${image}`} className='rounded sub-image' alt='other' />
                             </div>
                         })}
                     </div>
@@ -43,7 +43,7 @@ const ProeprtyDetail = (props) => {
             <div className='prop-detail-section'>
                 <section>
                     <div>
-                        <h2 className='property-host'>
+                        <h2 className='property-headings'>
                             Entire home hosted by XYZ
                         </h2>
                     </div>
@@ -56,13 +56,16 @@ const ProeprtyDetail = (props) => {
             </div>
             <div className='prop-detail-section'>
                 <div>
-                    <h2 className='property-host'>
+                    <h2 className='property-headings mb-3'>
                         Amenities
                     </h2>
+                    <ul class="card-columns">
+                        {property.amenities.map(amenity => <li className='amenity'>{amenity}</li>)}
+                    </ul>
                 </div>
             </div>
         </div>
     )
 }
 
-export default ProeprtyDetail;
+export default PropertyDetail;

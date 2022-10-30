@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import DetailModal from '../DetailModal/DetailModal';
-import ProeprtyDetail from '../PropertyDetail/PropertyDetail';
+import PropertyDetail from '../PropertyDetail/PropertyDetail';
 import './PropertyTile.scss';
 
 const PropertyTile = (props) => {
@@ -33,7 +33,7 @@ const PropertyTile = (props) => {
                         property.images.map((img, index) => {
                             return <div className={`carousel-item ${index === 0 && 'active'}`}>
                                 <div className="card-image">
-                                    <img src={`img/${img}`} className="card-img-top" data-bs-toggle="modal" data-bs-target="#staticBackdrop" alt={`img-${index}`} onClick={() => setIsOpen(true)} />
+                                    <img src={`img/${img}`} className="card-img-top" data-bs-toggle="modal" data-bs-property={property} data-bs-target="#detailModal" alt={`img-${index}`} onClick={() => props.toggleModal(props.id)} />
                                 </div>
                             </div>
                         }
@@ -68,7 +68,6 @@ const PropertyTile = (props) => {
                     <li className="list-group-item border-0 pt-0 pb-0"><strong>$ {property.avgCost}</strong> night</li>
                 </ul>
             </div>
-            {<DetailModal isOpen={isOpen} toggleModal={setIsOpen} modalTitle={'Property Details'}><ProeprtyDetail property={property} /></DetailModal>}
         </div>
     )
 }
