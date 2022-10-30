@@ -11,6 +11,7 @@ const PropertyList = (props) => {
         city: '',
         state: '',
         country: '',
+        host: '',
         reviews: 0,
         pricePerNight: 0,
         cleaningFee: 0,

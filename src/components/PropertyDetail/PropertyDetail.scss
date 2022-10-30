@@ -22,15 +22,55 @@
         font-size: 20px;
         font-weight: 600;
         margin: 0;
-        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     }
     .list-group-item {
-        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     }
     .card-columns {
-        column-count: 3;
-     }
-     .amenity{
+        //column-count: 2;
+    }
+    .amenity {
+        color: #222222;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+        font-weight: 400;
         font-size: 16px;
-     }
+        line-height: 20px;
+    }
+
+    .payment-box {
+        position: relative;
+        height: inherit;
+        margin-left: 8.333333333333332%;
+        margin-right: 0%;
+        border: 1px solid rgb(221, 221, 221);
+        border-radius: 12px;
+        padding: 24px;
+        margin-top: 48px;
+        box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+    }
+
+    .price-review {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 24px;
+    }
+    .charge-label {
+        color: rgb(34, 34, 34);
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    .total {
+        font-size: 14px;
+        line-height: 18px;
+        color: rgb(113, 113, 113);
+        font-weight: 400;
+        border-top: 1px solid rgb(221, 221, 221);
+        margin-top: 24px;
+        padding-top: 24px;
+    }
 }
