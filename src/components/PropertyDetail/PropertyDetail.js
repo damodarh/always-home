@@ -75,7 +75,7 @@ const PropertyDetail = (props) => {
                             <div className='payment-box'>
                                 <div className='price-review'>
                                     <span>
-                                        <strong>${property.pricePerNight}</strong> night
+                                        <strong className='fs-4'>${property.pricePerNight}</strong> <span className='fs-5'>night</span>
                                     </span>
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -124,10 +124,10 @@ const PropertyDetail = (props) => {
                                 </div>
                                 <div className='total'>
                                     <div className='charge-label'>
-                                        <span className='fw-bold'>
-                                            Total
+                                        <span className='fs-5'>
+                                            Total before taxes
                                         </span>
-                                        <span className='fw-bold'>
+                                        <span className='fs-5'>
                                             ${property.pricePerNight * 5 + property.cleaningFee + property.serviceFee}
                                         </span>
                                     </div>
