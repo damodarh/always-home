@@ -4,9 +4,9 @@ import './AlwaysHomeFooter.scss';
 const AlwaysHomeFooter = (props) => {
 
     return (
-        <footer id="sticky-footer" className=" bg-dark text-white-50 mt-5">
+        <footer id="sticky-footer" className=" bg-dark text-white-50 mt-5 sticky-bottom">
         <div className="container text-center">
-        <ul className="nav d-block justify-content-center">
+        <ul className="nav justify-content-center">
             <li className="nav-item">
                 <a href="#" className="nav-link p-1 text-white">Contact: <strong>+1 (123) 456-7890</strong></a>
             </li>

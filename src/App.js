@@ -35,11 +35,9 @@ function App() {
         searchText={searchText}
         handleInputChange={handleInputChange}
       >
-        <div>
-          <div className='mt-3 properties'>
+          <div className='container-fluid properties'>
             <PropertyList properties={filter(properties)} controlFavoritesList={controlFavoritesList} />
           </div>
-        </div>
       </Layout>
     </div >
   );

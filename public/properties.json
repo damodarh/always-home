@@ -8,7 +8,9 @@
         "pricePerNight": 500,
         "cleaningFee": 200,
         "serviceFee": 100,
-        "amenities": ["Complimentary breakfast"],
+        "amenities": [
+            "Complimentary breakfast"
+        ],
         "bedroom": 2,
         "beds": 1,
         "bath": 1,
@@ -33,7 +35,9 @@
         "pricePerNight": 500,
         "cleaningFee": 200,
         "serviceFee": 100,
-        "amenities": ["Complimentary breakfast"],
+        "amenities": [
+            "Complimentary breakfast"
+        ],
         "bedroom": 2,
         "beds": 1,
         "bath": 1,
@@ -57,7 +61,10 @@
         "pricePerNight": 1000,
         "cleaningFee": 300,
         "serviceFee": 200,
-        "amenities": ["Airport Shuttle", "Valet Parking"],
+        "amenities": [
+            "Airport Shuttle",
+            "Valet Parking"
+        ],
         "bedroom": 2,
         "beds": 1,
         "bath": 1,

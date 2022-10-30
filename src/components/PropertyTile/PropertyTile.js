@@ -6,7 +6,7 @@ const PropertyTile = (props) => {
     const property = { ...props.property };
 
     return (
-        <div className="card col-4 card-add-ons" key={props.id}>
+        <div className="card col-4 mt-3 card-add-ons" key={props.id}>
             <div>
                 <button className='heart-button' onClick={() => props.controlFavoritesList(props.id)}>
                     <svg viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" className={`heart heart-${property.favorite ? 'liked' : 'empty'}`}>
