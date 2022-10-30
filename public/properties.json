@@ -1,6 +1,10 @@
 [
     {
-        "title": "Lago Vista, Dallas",
+        "title": "The Blooming House",
+        "city": "Dallas",
+        "state": "Texas",
+        "country": "United States",
+        "reviews": 109,
         "pricePerNight": 500,
         "cleaningFee": 200,
         "serviceFee": 100,
@@ -9,6 +13,7 @@
         "images": [
             "Property_1.jpg",
             "Prop1a.jpg",
+            "Prop1b.jpg",
             "Prop1b.jpg"
         ],
         "rating": 4.5,
@@ -18,7 +23,11 @@
         "favorite": false
     },
     {
-        "title": "Stigler, Oklahoma",
+        "title": "East Side Beehive",
+        "city": "Austin",
+        "state": "Texas",
+        "country": "United States",
+        "reviews": 179,
         "pricePerNight": 500,
         "cleaningFee": 200,
         "serviceFee": 100,
@@ -36,7 +45,11 @@
         "favorite": false
     },
     {
-        "title": "Montville, New Jersey",
+        "title": "Humble Aboad",
+        "city": "Montville",
+        "state": "New Jersey",
+        "country": "United States",
+        "reviews": 53,
         "pricePerNight": 1000,
         "cleaningFee": 300,
         "serviceFee": 200,
