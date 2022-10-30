@@ -61,7 +61,7 @@ const PropertyTile = (props) => {
                     </li>
                     <li className="list-group-item border-0 pt-0 pb-0 text-muted">{property.distance}</li>
                     <li className="list-group-item border-0 pt-0 pb-0 text-muted">{property.availability}</li>
-                    <li className="list-group-item border-0 pt-0 pb-0"><strong>$ {property.avgCost}</strong> night</li>
+                    <li className="list-group-item border-0 pt-0 pb-0"><strong>$ {property.pricePerNight}</strong> night</li>
                 </ul>
             </div>
         </div>

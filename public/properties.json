@@ -29,7 +29,6 @@
             "Prop1b.jpg"
         ],
         "rating": 4.5,
-        "avgCost": 500,
         "availability": "Feb 12-17",
         "distance": "46 miles away",
         "favorite": false
@@ -60,7 +59,6 @@
             "Prop2b.jpg"
         ],
         "rating": 3,
-        "avgCost": 100,
         "availability": "Nov 26 - Dec 1",
         "distance": "52 miles away",
         "favorite": false
@@ -95,7 +93,6 @@
             "Prop2b.jpg"
         ],
         "rating": 4,
-        "avgCost": 100,
         "availability": "Nov 13-18",
         "distance": "20 miles away",
         "favorite": false
