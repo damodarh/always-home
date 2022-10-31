@@ -1,12 +1,29 @@
 .App {
     box-sizing: border-box;
     margin: 0;
-    font-family: 'Encode Sans';
+    font-family: "Encode Sans";
     overflow-x: hidden;
     height: 100%;
 }
 
-.properties{
+.properties {
     margin-left: 10%;
-    height: 100%;
+    @media (min-width: 320px) {
+        height: unset;
+    }
+    @media (min-width: 481px) {
+        height: unset;
+    }
+    @media (min-width: 641px) {
+        height: unset;
+    }
+    @media (min-width: 961px) {
+        height: 100vh;
+    }
+    @media (min-width: 1025px) {
+        height: 100vh;
+    }
+    @media (min-width: 1281px) {
+        height: 100vh;
+    }
 }
