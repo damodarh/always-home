@@ -26,7 +26,7 @@
             "Property_1.jpg",
             "Prop1a.jpg",
             "Prop1b.jpg",
-            "Prop1b.jpg"
+            "Prop1c.jpg"
         ],
         "rating": 4.5,
         "availability": "Feb 12-17",
@@ -56,7 +56,8 @@
         "images": [
             "Property_2.jpg",
             "Prop2a.jpg",
-            "Prop2b.jpg"
+            "Prop2b.jpg",
+            "Prop2c.jfif"
         ],
         "rating": 3,
         "availability": "Nov 26 - Dec 1",
@@ -88,9 +89,9 @@
         "beds": 1,
         "bath": 2,
         "images": [
-            "Property_2.jpg",
-            "Prop2a.jpg",
-            "Prop2b.jpg"
+            "Property_3.jpg",
+            "Prop3a.jpg",
+            "Prop3b.jpg"
         ],
         "rating": 4,
         "availability": "Nov 13-18",
