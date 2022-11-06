@@ -6,16 +6,23 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "config": "^3.3.8",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.2",
+    "mongoose": "^6.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "request": "^2.88.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start-server": "node server",
+    "start-dev-server": "nodemon server"
   },
   "eslintConfig": {
     "extends": [
@@ -37,6 +44,9 @@
   },
   "devDependencies": {
     "bootstrap": "^5.2.2",
+    "concurrently": "^7.5.0",
+    "generate-schema": "^2.6.0",
+    "nodemon": "^2.0.20",
     "sass": "^1.55.0"
   }
 }
