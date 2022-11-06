@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import DetailModal from '../DetailModal/DetailModal';
+import AlwaysHomeModal from '../AlwaysHomeModal/AlwaysHomeModal';
 import PropertyDetail from '../PropertyDetail/PropertyDetail';
 import PropertyTile from '../PropertyTile/PropertyTile';
+import './PropertyList.scss';
 
 const PropertyList = (props) => {
 
@@ -34,7 +35,7 @@ const PropertyList = (props) => {
     }
 
     return (
-        <div>
+        <div className='property-list'>
             <div className='row'>
                 {props.properties.map((property, index) => (
                     <PropertyTile
@@ -46,7 +47,14 @@ const PropertyList = (props) => {
                     />
                 ))}
             </div>
-            {<DetailModal modalTitle={'Property Details'}><PropertyDetail property={modalWindowProperty} /></DetailModal>}
+            {<AlwaysHomeModal
+                modalTitle={'Property Details'}
+                modalDialogClassName='modal-dialog'
+                modalContentClassName='modal-content'
+                modalBodyClassName='modal-body'
+            >
+                <PropertyDetail property={modalWindowProperty} />
+            </AlwaysHomeModal>}
         </div>
 
     )

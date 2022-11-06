@@ -1,0 +1,20 @@
+.property-list {
+    /*When the modal fills the screen it has an even 2.5% on top and bottom*/
+    /*Centers the modal*/
+    .modal-dialog {
+        margin: 2.5vh auto;
+    }
+
+    /*Sets the maximum height of the entire modal to 95% of the screen height*/
+    .modal-content {
+        height: 94vh;
+        max-height: 95vh;
+        overflow: auto;
+    }
+
+    /*Sets the maximum height of the modal body to 90% of the screen height*/
+    .modal-body {
+        height: 90vh;
+        max-height: 90vh;
+    }
+}
