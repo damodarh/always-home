@@ -9,9 +9,12 @@ const PropertyList = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [modalWindowProperty, setModalWindowProperty] = useState({
         title: '',
-        city: '',
-        state: '',
-        country: '',
+        address: {
+            city: '',
+            state: '',
+            country: '',
+            zip_code: 0,
+        },
         host: '',
         reviews: 0,
         pricePerNight: 0,

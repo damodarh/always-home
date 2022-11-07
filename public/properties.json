@@ -1,9 +1,13 @@
 [
     {
+        "property_id": 1,
         "title": "The Blooming House",
-        "city": "Dallas",
-        "state": "Texas",
-        "country": "United States",
+        "address": {
+            "city": "Dallas",
+            "state": "Texas",
+            "country": "United States",
+            "zip_code": 75252
+        },
         "host": "John Doe",
         "reviews": 109,
         "pricePerNight": 500,
@@ -34,10 +38,14 @@
         "favorite": false
     },
     {
+        "property_id": 2,
         "title": "East Side Beehive",
-        "city": "Austin",
-        "state": "Texas",
-        "country": "United States",
+        "address": {
+            "city": "Austin",
+            "state": "Texas",
+            "country": "United States",
+            "zip_code": 75242
+        },
         "host": "Jane Smith",
         "reviews": 179,
         "pricePerNight": 750,
@@ -65,10 +73,14 @@
         "favorite": false
     },
     {
+        "property_id": 3,
         "title": "Humble Aboad",
-        "city": "Montville",
-        "state": "New Jersey",
-        "country": "United States",
+        "address": {
+            "city": "Montville",
+            "state": "New Jersey",
+            "country": "United States",
+            "zip_code": 76213
+        },
         "host": "John Smith",
         "reviews": 53,
         "pricePerNight": 1000,

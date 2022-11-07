@@ -7,14 +7,19 @@ const PropertySchema = new mongoose.Schema({
     title: {
         type: String
     },
-    city: {
-        type: String
-    },
-    state: {
-        type: String
-    },
-    country: {
-        type: String
+    address: {
+        city: {
+            type: String
+        },
+        state: {
+            type: String
+        },
+        country: {
+            type: String
+        },
+        zip_code: {
+            type: Number
+        }
     },
     host: {
         type: String
