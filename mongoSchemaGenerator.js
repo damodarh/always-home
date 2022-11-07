@@ -1,6 +1,10 @@
 const generateSchema = require('generate-schema');
 
 let jsonData = {
+    
+};
+
+/* {
     title: '',
     city: '',
     state: '',
@@ -20,7 +24,7 @@ let jsonData = {
     availability: '',
     distance: '',
     favorite: false
-};
+} */
 
 let mongooseSchema = generateSchema.mongoose(jsonData);
 
