@@ -1,9 +1,6 @@
-const mongoose = require(mongoose);
+const mongoose = require('mongoose');
 
 const PropertySchema = new mongoose.Schema({
-    property_id: {
-        type: String
-    },
     title: {
         type: String
     },
@@ -61,10 +58,11 @@ const PropertySchema = new mongoose.Schema({
         type: String
     },
     distance: {
-        type: String
+        type: Number
     },
     favorite: {
-        type: Boolean
+        type: Boolean,
+        default: false,
     }
 });
 
