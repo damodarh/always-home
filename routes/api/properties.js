@@ -9,16 +9,16 @@ const Property = require("../../models/Property");
 // @access Public
 router.get("/", async (req, res) => {
   try {
-    const profiles = await Property.find();
-    return res.json(profiles);
+    const properties = await Property.find();
+    return res.json(properties);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
   }
 });
 
-// @route POST api/profile
-// @desc Create or update a user profile
+// @route POST api/property
+// @desc Create or update a property
 // @access Private
 router.post("/", auth, async (req, res) => {
   const errors = validationResult(req);
