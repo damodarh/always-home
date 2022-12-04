@@ -18,9 +18,9 @@ function App() {
   }
 
   const filter = (propertyList) => {
-
+    console.log(properties, searchText)
     return propertyList.filter(property => {
-      return property.title.toLowerCase().includes(searchText.toLowerCase()) || property.city.toLowerCase().includes(searchText.toLowerCase());
+      return property.title.toLowerCase().includes(searchText.toLowerCase()) || property.address.city.toLowerCase().includes(searchText.toLowerCase());
     });
 
   }

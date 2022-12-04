@@ -1,56 +1,29 @@
 {
-  "name": "always-home",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "bcryptjs": "^2.4.3",
-    "config": "^3.3.8",
-    "express": "^4.18.2",
-    "express-validator": "^6.14.2",
-    "formik": "^2.2.9",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.7.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "request": "^2.88.2",
-    "web-vitals": "^2.1.4",
-    "yup": "^0.32.11"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "start-server": "node server",
-    "start-dev-server": "nodemon server"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "bootstrap": "^5.2.2",
-    "concurrently": "^7.5.0",
-    "generate-schema": "^2.6.0",
-    "nodemon": "^2.0.20",
-    "sass": "^1.55.0"
+    "name": "always-home",
+    "version": "1.0.0",
+    "description": "Developers network",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server",
+      "server": "nodemon server",
+      "client": "npm start --prefix client",
+      "dev": "concurrently \"npm run server\" \"npm run client\""
+    },
+    "author": "Damodar Hegde",
+    "license": "MIT",
+    "dependencies": {
+      "bcryptjs": "^2.4.3",
+      "config": "^3.3.8",
+      "express": "^4.18.2",
+      "express-validator": "^6.14.2",
+      "gravatar": "^1.8.2",
+      "jsonwebtoken": "^8.5.1",
+      "mongoose": "^6.7.0",
+      "request": "^2.88.2"
+    },
+    "devDependencies": {
+      "concurrently": "^7.5.0",
+      "nodemon": "^2.0.20"
+    }
   }
-}
+  
