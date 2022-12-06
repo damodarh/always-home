@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import AlwaysHomeModal from '../AlwaysHomeModal/AlwaysHomeModal';
 import PropertyDetail from '../PropertyDetail/PropertyDetail';
 import PropertyTile from '../PropertyTile/PropertyTile';
 import './PropertyList.scss';
 
 const PropertyList = (props) => {
-
     const [isOpen, setIsOpen] = useState(false);
     const [modalWindowProperty, setModalWindowProperty] = useState({
         title: '',
@@ -29,13 +30,15 @@ const PropertyList = (props) => {
         avgCost: 0,
         availability: '',
         distance: '',
-        favorite: false
+        favorite: false,
     });
 
     const toggleModal = (id) => {
         setIsOpen(!isOpen);
-        setModalWindowProperty(props.properties.find((propertyModal, index) => index === id));
-    }
+        setModalWindowProperty(
+            props.properties.find((propertyModal, index) => index === id)
+        );
+    };
 
     return (
         <div className='property-list'>
@@ -47,21 +50,33 @@ const PropertyList = (props) => {
                         key={index}
                         controlFavoritesList={props.controlFavoritesList}
                         toggleModal={toggleModal}
+                        isAuthenticated={props.isAuthenticated}
                     />
                 ))}
             </div>
-            {<AlwaysHomeModal
-                modalTitle={'Property Details'}
-                modalDialogClassName='modal-dialog'
-                modalContentClassName='modal-content'
-                modalBodyClassName='modal-body'
-            >
-                <PropertyDetail property={modalWindowProperty} />
-            </AlwaysHomeModal>}
+            {
+                <AlwaysHomeModal
+                    modalTitle={'Property Details'}
+                    modalDialogClassName='modal-dialog'
+                    modalContentClassName='modal-content'
+                    modalBodyClassName='modal-body'
+                    id='detailModal'
+                    label='detailModalLabel'
+                >
+                    <PropertyDetail property={modalWindowProperty} />
+                </AlwaysHomeModal>
+            }
         </div>
+    );
+};
 
-    )
 
-}
+PropertyList.propTypes = {
+    isAuthenticated: PropTypes.bool,
+};
 
-export default PropertyList;
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, {})(PropertyList);
