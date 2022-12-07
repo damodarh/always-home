@@ -1,46 +1,68 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+//Redux
+import { Provider } from 'react-redux';
+import store from './store';
+import { loadUser } from './actions/auth';
+import Alert from './components/Layout/Alert';
+import setAuthToken from './utils/setAuthToken';
 import './App.scss';
-import Layout from './components/Layout/Layout';
 import PropertyList from './components/PropertyList/PropertyList';
+import PrivateRoute from './components/routing/PrivateRoute';
+import AlwaysHomeHeader from './components/AlwaysHomeHeader/AlwaysHomeHeader';
+import AlwaysHomeFooter from './components/AlwaysHomeFooter/AlwaysHomeFooter';
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
+import Landing from './components/Layout/Landing';
+
+if (localStorage.token) {
+    setAuthToken(localStorage.token);
+}
 
 function App() {
+    const [searchText, setSearchText] = useState('');
 
-  const [properties, setProperties] = useState([]);
-  const [searchText, setSearchText] = useState('');
+    const handleInputChange = (value) => {
+        setSearchText(value.trim());
+    };
 
-  useEffect(() => {
-    fetch('properties.json').then(resp => resp.json()).then(data => setProperties(data));
-  }, []);
+    useEffect(() => {
+        store.dispatch(loadUser());
+    }, []);
 
-  const handleInputChange = (value) => {
-    setSearchText(value.trim());
-  }
-
-  const filter = (propertyList) => {
-    console.log(properties, searchText)
-    return propertyList.filter(property => {
-      return property.title.toLowerCase().includes(searchText.toLowerCase()) || property.address.city.toLowerCase().includes(searchText.toLowerCase());
-    });
-
-  }
-
-  const controlFavoritesList = id => {
-    setProperties(properties.map((property, index) => index === id ? {...property, favorite: !property.favorite} : property));
-  }
-
-  return (
-    <div className="App">
-      <Layout
-        searchText={searchText}
-        handleInputChange={handleInputChange}
-      >
-          <div className='container-fluid properties'>
-            <PropertyList properties={filter(properties)} controlFavoritesList={controlFavoritesList} />
-          </div>
-      </Layout>
-    </div >
-  );
+    return (
+        <Provider store={store}>
+            <BrowserRouter>
+                <div className='App'>
+                    <AlwaysHomeHeader
+                        searchText={searchText}
+                        handleInputChange={handleInputChange}
+                    />
+                    <Switch>
+                        <div className='container-fluid properties'>
+                            <Alert />
+                            <Route exact path='/' component={Landing} />
+                            <Route
+                                exact
+                                path='/login'
+                                component={Login}
+                            ></Route>
+                            <Route
+                                exact
+                                path='/register'
+                                component={Register}
+                            ></Route>
+                            <PrivateRoute exact path='/properties'>
+                                <PropertyList searchText={searchText} />
+                            </PrivateRoute>
+                        </div>
+                    </Switch>
+                    <AlwaysHomeFooter />
+                </div>
+            </BrowserRouter>
+        </Provider>
+    );
 }
 
 export default App;
