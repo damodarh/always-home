@@ -2,68 +2,71 @@ const mongoose = require('mongoose');
 
 const PropertySchema = new mongoose.Schema({
     title: {
-        type: String
+        type: String,
     },
-    address: {
-        city: {
-            type: String
-        },
-        state: {
-            type: String
-        },
-        country: {
-            type: String
-        },
-        zip_code: {
-            type: Number
-        }
+
+    city: {
+        type: String,
+    },
+    state: {
+        type: String,
+    },
+    country: {
+        type: String,
+    },
+    zip_code: {
+        type: Number,
     },
     host: {
-        type: String
+        type: String,
     },
     reviews: {
-        type: Number
+        type: Number,
     },
     pricePerNight: {
-        type: Number
+        type: Number,
     },
     cleaningFee: {
-        type: Number
+        type: Number,
     },
     serviceFee: {
-        type: Number
+        type: Number,
     },
     amenities: {
-        type: Array
+        type: Array,
     },
     bedroom: {
-        type: Number
+        type: Number,
     },
     beds: {
-        type: Number
+        type: Number,
     },
     bath: {
-        type: Number
+        type: Number,
     },
-    images: {
-        type: Array
-    },
+    images: [
+        {
+            image: {
+                type: String,
+            },
+        },
+    ],
     rating: {
-        type: Number
+        type: Number,
     },
     avgCost: {
-        type: Number
+        type: Number,
     },
     availability: {
-        type: String
+        type: String,
     },
     distance: {
-        type: Number
+        type: Number,
     },
     favorite: {
         type: Boolean,
         default: false,
-    }
+    },
 });
 
 module.exports = Property = mongoose.model('property', PropertySchema);

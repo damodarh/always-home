@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import AlwaysHomeModal from '../AlwaysHomeModal/AlwaysHomeModal';
 import PropertyDetail from '../PropertyDetail/PropertyDetail';
@@ -8,14 +9,18 @@ import './PropertyList.scss';
 
 const PropertyList = (props) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [properties, setProperties] = useState([]);
+
+    useEffect(() => {
+        axios.get('/api/properties').then((resp) => setProperties(resp.data));
+    }, []);
+
     const [modalWindowProperty, setModalWindowProperty] = useState({
         title: '',
-        address: {
-            city: '',
-            state: '',
-            country: '',
-            zip_code: 0,
-        },
+        city: '',
+        state: '',
+        country: '',
+        zip_code: 0,
         host: '',
         reviews: 0,
         pricePerNight: 0,
@@ -36,19 +41,44 @@ const PropertyList = (props) => {
     const toggleModal = (id) => {
         setIsOpen(!isOpen);
         setModalWindowProperty(
-            props.properties.find((propertyModal, index) => index === id)
+            properties.find((propertyModal, index) => index === id)
         );
+    };
+
+    const filter = (propertyList) => {
+        return propertyList.filter((property) => {
+            return (
+                property.title
+                    .toLowerCase()
+                    .includes(props.searchText.toLowerCase()) ||
+                property.address.city
+                    .toLowerCase()
+                    .includes(props.searchText.toLowerCase())
+            );
+        });
+    };
+
+    const controlFavoritesList = (id, isAuthenticated) => {
+        isAuthenticated && isAuthenticated
+            ? setProperties(
+                  properties.map((property, index) =>
+                      index === id
+                          ? { ...property, favorite: !property.favorite }
+                          : property
+                  )
+              )
+            : alert('Authenticate first');
     };
 
     return (
         <div className='property-list'>
             <div className='row'>
-                {props.properties.map((property, index) => (
+                {filter(properties).map((property, index) => (
                     <PropertyTile
                         property={property}
                         id={index}
                         key={index}
-                        controlFavoritesList={props.controlFavoritesList}
+                        controlFavoritesList={controlFavoritesList}
                         toggleModal={toggleModal}
                         isAuthenticated={props.isAuthenticated}
                     />
@@ -69,7 +99,6 @@ const PropertyList = (props) => {
         </div>
     );
 };
-
 
 PropertyList.propTypes = {
     isAuthenticated: PropTypes.bool,
