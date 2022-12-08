@@ -2,12 +2,10 @@
     {
         "property_id": 1,
         "title": "The Blooming House",
-        "address": {
-            "city": "Dallas",
-            "state": "Texas",
-            "country": "United States",
-            "zip_code": 75252
-        },
+        "city": "Dallas",
+        "state": "Texas",
+        "country": "United States",
+        "zip_code": 75252,
         "host": "John Doe",
         "reviews": 109,
         "pricePerNight": 500,
@@ -26,12 +24,7 @@
         "bedroom": 2,
         "beds": 1,
         "bath": 1,
-        "images": [
-            "Property_1.jpg",
-            "Prop1a.jpg",
-            "Prop1b.jpg",
-            "Prop1c.jpg"
-        ],
+        "images": ["Property_1.jpg", "Prop1a.jpg", "Prop1b.jpg", "Prop1c.jpg"],
         "rating": 4.5,
         "availability": "Feb 12-17",
         "distance": "46 miles away",
@@ -40,12 +33,10 @@
     {
         "property_id": 2,
         "title": "East Side Beehive",
-        "address": {
-            "city": "Austin",
-            "state": "Texas",
-            "country": "United States",
-            "zip_code": 75242
-        },
+        "city": "Austin",
+        "state": "Texas",
+        "country": "United States",
+        "zip_code": 75242,
         "host": "Jane Smith",
         "reviews": 179,
         "pricePerNight": 750,
@@ -61,12 +52,7 @@
         "bedroom": 1,
         "beds": 2,
         "bath": 1,
-        "images": [
-            "Property_2.jpg",
-            "Prop2a.jpg",
-            "Prop2b.jpg",
-            "Prop2c.jfif"
-        ],
+        "images": ["Property_2.jpg", "Prop2a.jpg", "Prop2b.jpg", "Prop2c.jfif"],
         "rating": 3,
         "availability": "Nov 26 - Dec 1",
         "distance": "52 miles away",
@@ -75,12 +61,10 @@
     {
         "property_id": 3,
         "title": "Humble Aboad",
-        "address": {
-            "city": "Montville",
-            "state": "New Jersey",
-            "country": "United States",
-            "zip_code": 76213
-        },
+        "city": "Montville",
+        "state": "New Jersey",
+        "country": "United States",
+        "zip_code": 76213,
         "host": "John Smith",
         "reviews": 53,
         "pricePerNight": 1000,
@@ -100,11 +84,7 @@
         "bedroom": 2,
         "beds": 1,
         "bath": 2,
-        "images": [
-            "Property_3.jpg",
-            "Prop3a.jpg",
-            "Prop3b.jpg"
-        ],
+        "images": ["Property_3.jpg", "Prop3a.jpg", "Prop3b.jpg"],
         "rating": 4,
         "availability": "Nov 13-18",
         "distance": "20 miles away",
