@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
+import './Register.scss';
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
     const [formData, setFormData] = useState({
@@ -11,20 +12,24 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         email: '',
         password: '',
         password2: '',
+        isHost: false,
     });
 
-    const { name, email, password, password2 } = formData;
+    const { name, email, password, password2, isHost } = formData;
 
-    const onChange = (e) =>
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+    const onChange = (e) =>{
+        console.log(e.target.name, e.target.checked, isHost)
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.checked ?? e.target.value,
+        });}
 
     const onSubmit = async (e) => {
         e.preventDefault();
         if (password !== password2)
             setAlert("Passwords don't match", 'danger', 3000);
         else {
-            console.log(register);
-            register({ name, email, password });
+            register({ name, email, password, isHost });
         }
     };
 
@@ -33,13 +38,14 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     }
 
     return (
-        <div className='w-25 ms-5 mt-3'>
+        <div className='w-25 ms-5 mt-3 register'>
             <h1 className='large text-primary'>Sign Up</h1>
             <p className='lead'>
                 <i className='fas fa-user'></i> Create Your Account
             </p>
-            <form className='form' onSubmit={onSubmit}>
-                <div className='form-group'>
+            <form className='form' onSubmit={onSubmit} novalidate>
+                <div className='form-group required'>
+                    <label class='form-label'>Name</label>
                     <div className='mb-3'>
                         <input
                             type='text'
@@ -48,11 +54,12 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                             name='name'
                             value={name}
                             onChange={(e) => onChange(e)}
-                            //required
+                            required
                         />
                     </div>
                 </div>
-                <div className='form-group'>
+                <div className='form-group required'>
+                    <label className='form-label'>Email Address</label>
                     <div className='mb-3'>
                         <input
                             type='email'
@@ -65,7 +72,8 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                         />
                     </div>
                 </div>
-                <div className='form-group'>
+                <div className='form-group required'>
+                    <label className='form-label control-label'>Password</label>
                     <div className='mb-3'>
                         <input
                             type='password'
@@ -78,7 +86,8 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                         />
                     </div>
                 </div>
-                <div className='form-group'>
+                <div className='form-group required'>
+                    <label className='form-label'>Reenter Password</label>
                     <div className='mb-3'>
                         <input
                             type='password'
@@ -91,13 +100,28 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                         />
                     </div>
                 </div>
+                <div className='form-check'>
+                    <div className='mb-3'>
+                        <input
+                            type='checkbox'
+                            className='form-check-input'
+                            name='isHost'
+                            id='hostCheckBox'
+                            checked={isHost}
+                            onChange={(e) => onChange(e)}
+                        />
+                        <label className='form-check-label' for='hostCheckBox'>
+                            Become Host
+                        </label>
+                    </div>
+                </div>
                 <input
                     type='submit'
                     className='btn btn-primary'
                     value='Register'
                 />
             </form>
-            <p className='my-1'>
+            <p className='mt-3'>
                 Already have an account? <Link to='/login'>Sign In</Link>
             </p>
         </div>

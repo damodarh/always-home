@@ -22,7 +22,7 @@ const PropertyDetail = (props) => {
                             <span><u>{property.reviews} reviews</u></span>
                         </span>
                         <span className='dot'>.</span>
-                        <span><u>{property.address.city}, {property.address.state}, {property.address.country}</u></span>
+                        <span><u>{property.city}, {property.state}, {property.country}</u></span>
                     </div>
                 </section>
             </div>
