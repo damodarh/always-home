@@ -47,7 +47,8 @@ const PropertySchema = new mongoose.Schema({
     images: [
         {
             image: {
-                type: String,
+                data: Buffer,
+                contentTye: String,
             },
         },
     ],

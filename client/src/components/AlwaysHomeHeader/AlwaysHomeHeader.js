@@ -9,11 +9,17 @@ import './AlwaysHomeHeader.css';
 const AlwaysHomeHeader = ({
     searchText,
     handleInputChange,
-    auth: { isAuthenticated, loading },
+    auth: { isAuthenticated, loading, user },
     logout,
 }) => {
     const authLinks = (
         <ul className='navbar-nav ms-auto'>
+            {user && user.isHost && <li className='nav-item'>
+                <Link className='nav-link text-black' to='/add-property'>
+                <i class="fa fa-thin fa-user"></i>{' '}
+                    <span className='ms-2'>Host Property</span>
+                </Link>
+            </li>}
             <li className='nav-item'>
                 <Link className='nav-link text-black' to='/profile'>
                 <i class="fa fa-thin fa-user"></i>{' '}

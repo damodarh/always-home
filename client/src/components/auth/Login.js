@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
+import './Register.scss';
 
 const Login = ({ login, isAuthenticated }) => {
     const [formData, setFormData] = useState({
@@ -25,33 +26,41 @@ const Login = ({ login, isAuthenticated }) => {
     }
 
     return (
-        <div className='w-25 ms-5 mt-3'>
+        <div className='w-25 ms-5 mt-3 register'>
             <h1 className='large text-primary'>Sign In</h1>
             <p className='lead'>
                 <i className='fas fa-user'></i> Sign Into Your Account
             </p>
-            <form className='form' onSubmit={onSubmit}>
-                <div className='mb-3'>
-                    <input
-                        type='email'
-                        className='form-control'
-                        placeholder='Email Address'
-                        name='email'
-                        value={email}
-                        onChange={(e) => onChange(e)}
-                        required
-                    />
+            <form className='form' onSubmit={onSubmit} noValidate>
+                <div className='form-group required'>
+                    <label className='form-label control-label'>Email</label>
+                    <div className='mb-3'>
+                        <input
+                            type='email'
+                            className='form-control'
+                            placeholder='Email Address'
+                            name='email'
+                            value={email}
+                            onChange={(e) => onChange(e)}
+                            required
+                        />
+                    </div>
                 </div>
-                <div className='mb-3'>
-                    <input
-                        type='password'
-                        className='form-control'
-                        placeholder='Password'
-                        value={password}
-                        name='password'
-                        onChange={(e) => onChange(e)}
-                        minLength='6'
-                    />
+                <div className='form-group required'>
+                    <div className='mb-3'>
+                        <label className='form-label control-label'>
+                            Password
+                        </label>
+                        <input
+                            type='password'
+                            className='form-control'
+                            placeholder='Password'
+                            value={password}
+                            name='password'
+                            onChange={(e) => onChange(e)}
+                            required
+                        />
+                    </div>
                 </div>
                 <div className='d-grid'>
                     <input
@@ -61,7 +70,7 @@ const Login = ({ login, isAuthenticated }) => {
                     />
                 </div>
             </form>
-            <p className='my-1'>
+            <p className='mt-3'>
                 Don't have an account? <Link to='/register'>Sign Up</Link>
             </p>
         </div>

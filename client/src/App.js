@@ -8,7 +8,7 @@ import { loadUser } from './actions/auth';
 import Alert from './components/Layout/Alert';
 import setAuthToken from './utils/setAuthToken';
 import './App.scss';
-import PropertyList from './components/PropertyList/PropertyList';
+import PropertyList from './components/property/PropertyList/PropertyList';
 import PrivateRoute from './components/routing/PrivateRoute';
 import AlwaysHomeHeader from './components/AlwaysHomeHeader/AlwaysHomeHeader';
 import AlwaysHomeFooter from './components/AlwaysHomeFooter/AlwaysHomeFooter';
