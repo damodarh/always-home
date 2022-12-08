@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import AlwaysHomeModal from '../AlwaysHomeModal/AlwaysHomeModal';
+import AlwaysHomeModal from '../../AlwaysHomeModal/AlwaysHomeModal';
 import PropertyDetail from '../PropertyDetail/PropertyDetail';
 import PropertyTile from '../PropertyTile/PropertyTile';
 import './PropertyList.scss';
+import { Link } from 'react-router-dom';
 
 const PropertyList = (props) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +14,9 @@ const PropertyList = (props) => {
 
     useEffect(() => {
         axios.get('/api/properties').then((resp) => setProperties(resp.data));
+        // fetch('properties.json')
+        //     .then((res) => res.json())
+        //     .then((resp) => setProperties(resp));
     }, []);
 
     const [modalWindowProperty, setModalWindowProperty] = useState({
@@ -51,7 +55,7 @@ const PropertyList = (props) => {
                 property.title
                     .toLowerCase()
                     .includes(props.searchText.toLowerCase()) ||
-                property.address.city
+                property.city
                     .toLowerCase()
                     .includes(props.searchText.toLowerCase())
             );
@@ -69,6 +73,8 @@ const PropertyList = (props) => {
               )
             : alert('Authenticate first');
     };
+
+    if (!props.isAuthenticated) return <Link to='/login' />;
 
     return (
         <div className='property-list'>
