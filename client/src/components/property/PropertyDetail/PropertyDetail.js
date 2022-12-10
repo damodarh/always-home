@@ -39,9 +39,9 @@ const PropertyDetail = (props) => {
       <div className='row'>
         <div className='col-lg-6'>
           <img
-            src={`data:${property.images[0].contentType};base64,${
+            src={`${
               property.images[0]
-                ? btoa(
+                ? 'data:${property.images[0].contentType};base64,'+btoa(
                     String.fromCharCode(
                       ...new Uint8Array(property.images[0].data.data)
                     )

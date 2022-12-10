@@ -127,7 +127,6 @@ const AddProperty = (props) => {
           className='form'
           onSubmit={onSubmit}
           enctype='multipart/form-data'
-          noValidate
         >
           <div className='row'>
             <div className='form-group required col-3'>
@@ -358,54 +357,52 @@ const AddProperty = (props) => {
               </div>
             </div>
           </div>
-          <div className='required col-6'>
-            <div className='mb-3'>
-              <input
-                id='images'
-                name='images'
-                style={{ display: "none" }}
-                type='file'
-                multiple
-                accept='image/png'
-                onChange={handleFileEvent}
-                disabled={fileLimit}
-              />
+        </form>
+        <div className='required col-6'>
+          <div className='mb-3'>
+            <input
+              id='images'
+              name='images'
+              style={{ display: "none" }}
+              type='file'
+              multiple
+              accept='image/png'
+              onChange={handleFileEvent}
+              disabled={fileLimit}
+            />
 
-              <label htmlFor='images'>
-                <a
-                  className={`btn btn-primary ${!fileLimit ? "" : "disabled"} `}
-                >
-                  Upload Property Images
-                </a>
-              </label>
+            <label htmlFor='images'>
+              <a className={`btn btn-primary ${!fileLimit ? "" : "disabled"} `}>
+                Upload Property Images
+              </a>
+            </label>
 
-              <div className='row mt-4'>
-                {uploadedFiles.map((file, index) => (
-                  <div className='col-lg-4 col-md-4 col-xs-4 thumb' key={index}>
-                    <img
-                      className='img-responsive w-75 h-75 border border-1'
-                      src={URL.createObjectURL(file)}
-                      alt={`upload-${index}`}
-                    />
-                    <button
-                      className='btn btn-danger btn-sm ms-2'
-                      onClick={() => deleteUploadedImage(index)}
-                    >
-                      X
-                    </button>
-                  </div>
-                ))}
-              </div>
+            <div className='row mt-4'>
+              {uploadedFiles.map((file, index) => (
+                <div className='col-lg-4 col-md-4 col-xs-4 thumb' key={index}>
+                  <img
+                    className='img-responsive w-75 h-75 border border-1'
+                    src={URL.createObjectURL(file)}
+                    alt={`upload-${index}`}
+                  />
+                  <button
+                    className='btn btn-danger btn-sm ms-2'
+                    onClick={() => deleteUploadedImage(index)}
+                  >
+                    X
+                  </button>
+                </div>
+              ))}
             </div>
           </div>
-          <div className='d-grid'>
-            <input
-              type='submit'
-              className='btn btn-primary'
-              value='Host Property'
-            />
-          </div>
-        </form>
+        </div>
+        <div className='d-grid'>
+          <input
+            type='submit'
+            className='btn btn-primary'
+            value='Host Property'
+          />
+        </div>
       </div>
     </div>
   );
