@@ -60,8 +60,9 @@ const PropertySchema = new mongoose.Schema({
   avgCost: {
     type: Number,
   },
-  availability: {
-    type: String,
+  available: {
+    type: Boolean,
+    default: true,
   },
   distance: {
     type: Number,

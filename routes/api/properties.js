@@ -38,7 +38,7 @@ router.get("/", async (req, res) => {
 /*GET - show property based on id*/
 router.get("/:id", async (req, res) => {
   try {
-    const property = await Property.findOne({ id: req.params.id });
+    const property = await Property.findOne({ _id: req.params.id });
 
     if (!property) return res.status(404).json({ msg: "Property not found" });
     return res.json(property);
@@ -130,13 +130,8 @@ router.post("/:id", [auth, upload.array("images")], async (req, res) => {
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
 
-  const {
-    pricePerNight,
-    cleaningFee,
-    serviceFee,
-    avgCost,
-    amenities,
-  } = req.body;
+  const { pricePerNight, cleaningFee, serviceFee, avgCost, amenities } =
+    req.body;
 
   //Build property object
   const propertyFields = {};
@@ -176,11 +171,38 @@ router.post("/:id", [auth, upload.array("images")], async (req, res) => {
   }
 });
 
-/* DELETE - Delete any one property */
+/* DELETE - (Soft) Delete any one property */
 router.delete("/:id", auth, async (req, res) => {
   try {
-    await Property.findOneAndRemove({ id: req.params.id });
-    res.json({ msg: "Property deleted" });
+    let property = await Property.findOne({ _id: req.params.id });
+
+    if (!property) return res.status(404).json({ msg: "Property not found" });
+    property.available = false;
+    property = await Property.findOneAndUpdate(
+      { user: req.user.id },
+      { $set: property },
+      { new: true }
+    );
+    return res.json(property);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
+/* PUT - Mark property as available */
+router.put("/available/:id", auth, async (req, res) => {
+  try {
+    let property = await Property.findOne({ _id: req.params.id });
+
+    if (!property) return res.status(404).json({ msg: "Property not found" });
+    property.available = true;
+    property = await Property.findOneAndUpdate(
+      { user: req.user.id },
+      { $set: property },
+      { new: true }
+    );
+    return res.json(property);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
