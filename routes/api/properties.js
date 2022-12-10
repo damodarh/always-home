@@ -50,10 +50,9 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// @route POST api/property
+// @route POST api/properties
 // @desc Create a property
 // @access Private
-// TODO - images here is to be the name of the input field in form where we will be uploading images <input type="file" name="photos" accept='image/*' multiple>
 router.post("/", [auth, upload.array("images")], async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty())
@@ -74,7 +73,10 @@ router.post("/", [auth, upload.array("images")], async (req, res) => {
     availability,
     distance,
     favorite,
-    address,
+    city,
+    state,
+    country,
+    zipCode,
   } = req.body;
 
   //Build property object
@@ -94,13 +96,11 @@ router.post("/", [auth, upload.array("images")], async (req, res) => {
   if (availability) propertyFields.availability = availability;
   if (distance) propertyFields.distance = distance;
   if (favorite) propertyFields.favorite = favorite;
-  propertyFields.address = {};
-  if (address) {
-    if (address.city) propertyFields.address.city = address.city;
-    if (address.state) propertyFields.address.state = address.state;
-    if (address.country) propertyFields.address.country = address.country;
-    if (address.zipCode) propertyFields.address.zipCode = address.zipCode;
-  }
+  if (city) propertyFields.city = city;
+  if (state) propertyFields.state = state;
+  if (country) propertyFields.country = country;
+  if (zipCode) propertyFields.zipCode = zipCode;
+
   propertyFields.images = [];
   if (req.files) {
     req.files.map((file) => {
@@ -115,17 +115,6 @@ router.post("/", [auth, upload.array("images")], async (req, res) => {
   }
 
   try {
-    // let property = await Property.findOne({ user: req.user.id });
-    // if (property) {
-    //     //Update
-    //     property = await Property.findOneAndUpdate(
-    //         { user: req.user.id },
-    //         { $set: propertyFields },
-    //         { new: true }
-    //     );
-    //     return res.json(property);
-    // }
-
     let property = new Property(propertyFields);
     await property.save();
     return res.json(property);
@@ -135,13 +124,18 @@ router.post("/", [auth, upload.array("images")], async (req, res) => {
   }
 });
 
-/* PUT - Update/Edit an existing property */
-router.put("/:id", [auth, upload.array("images")], async (req, res) => {
+/* POST - Update/Edit an existing property */
+router.post("/:id", [auth, upload.array("images")], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty())
+    return res.status(400).json({ errors: errors.array() });
+
   const {
     pricePerNight,
     cleaningFee,
     serviceFee,
     avgCost,
+    amenities,
   } = req.body;
 
   //Build property object
@@ -151,6 +145,8 @@ router.put("/:id", [auth, upload.array("images")], async (req, res) => {
   if (cleaningFee) propertyFields.cleaningFee = cleaningFee;
   if (serviceFee) propertyFields.serviceFee = serviceFee;
   if (avgCost) propertyFields.avgCost = avgCost;
+  if (amenities) propertyFields.amenities = amenities;
+
   propertyFields.images = [];
   if (req.files) {
     req.files.map((file) => {
@@ -167,7 +163,6 @@ router.put("/:id", [auth, upload.array("images")], async (req, res) => {
   try {
     let property = await Property.findOne({ user: req.user.id });
     if (property) {
-      //Update
       property = await Property.findOneAndUpdate(
         { user: req.user.id },
         { $set: propertyFields },
@@ -175,7 +170,6 @@ router.put("/:id", [auth, upload.array("images")], async (req, res) => {
       );
       return res.json(property);
     }
-    return res.json(property);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

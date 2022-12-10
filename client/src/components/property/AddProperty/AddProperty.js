@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
+import Select from "react-select";
 import axios from "axios";
 
 const AddProperty = (props) => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [redirect, setRedirect] = useState(false);
   const [fileLimit, setFileLimit] = useState(false);
+  const [amenities, setAmenities] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
     host: "",
@@ -21,7 +23,10 @@ const AddProperty = (props) => {
     availability: 0,
     distance: 0,
     favorite: false,
-    address: "",
+    city: "",
+    state: "",
+    country: "",
+    zipCode: 0,
   });
 
   const handleUploadFiles = (files) => {
@@ -54,7 +59,11 @@ const AddProperty = (props) => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const formDataNew = { ...formData, images: [...uploadedFiles] };
+    const formDataNew = {
+      ...formData,
+      images: [...uploadedFiles],
+      amenities: [...amenities],
+    };
     let formDataApi = new FormData();
     Object.keys(formDataNew).forEach((key) => {
       if (key === "images") {
@@ -80,6 +89,10 @@ const AddProperty = (props) => {
     setUploadedFiles(uploadedFilesClone);
   };
 
+  const handleSelectChange = (amenities) => {
+    setAmenities(amenities);
+  };
+
   const {
     title,
     host,
@@ -91,8 +104,18 @@ const AddProperty = (props) => {
     bath,
     avgCost,
     distance,
-    address,
+    city,
+    state,
+    country,
+    zipCode,
   } = formData;
+
+  const options = [
+    { value: "Wifi", label: "Wifi" },
+    { value: "Washer/Dryer", label: "Washer/Dryer" },
+    { value: "Cooks", label: "Cooks" },
+    { value: "Backyard", label: "Backyard" },
+  ];
 
   if (redirect) return <Redirect to='/properties' />;
 
@@ -206,7 +229,7 @@ const AddProperty = (props) => {
               <div className='mb-3'>
                 <select
                   className='form-select'
-                  name='bath`'
+                  name='bath'
                   value={bath}
                   onChange={(e) => onChange(e)}
                   required
@@ -266,16 +289,72 @@ const AddProperty = (props) => {
               </div>
             </div>
             <div className='form-group required col-3'>
-              <label className='form-label control-label'>Address</label>
+              <label className='form-label control-label'>Amenities</label>
               <div className='mb-3'>
-                <textarea
+                <Select
+                  isMulti
+                  value={amenities}
+                  onChange={handleSelectChange}
+                  options={options}
+                />
+              </div>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='form-group required col-3'>
+              <label className='form-label control-label'>City</label>
+              <div className='mb-3'>
+                <input
+                  type='text'
                   className='form-control'
-                  placeholder='Address'
-                  name='address'
-                  value={address}
+                  placeholder='City'
+                  name='city'
+                  value={city}
                   onChange={(e) => onChange(e)}
                   required
                 />
+              </div>
+            </div>
+            <div className='form-group required col-3'>
+              <label className='form-label control-label'>State</label>
+              <div className='mb-3'>
+                <input
+                  type='text'
+                  className='form-control'
+                  placeholder='State'
+                  name='state'
+                  value={state}
+                  onChange={(e) => onChange(e)}
+                  required
+                />
+              </div>
+            </div>
+            <div className='form-group required col-3'>
+              <label className='form-label control-label'>Country</label>
+              <div className='mb-3'>
+                <input
+                  type='text'
+                  className='form-control'
+                  placeholder='Country'
+                  name='country'
+                  value={country}
+                  onChange={(e) => onChange(e)}
+                  required
+                />
+              </div>
+            </div>
+            <div className='form-group required col-3'>
+              <label className='form-label control-label'>Zip Code</label>
+              <div className='mb-3'>
+                <input
+                  type='number'
+                  className='form-control'
+                  placeholder='Zip'
+                  name='zipCode'
+                  value={zipCode}
+                  onChange={(e) => onChange(e)}
+                  required
+                ></input>
               </div>
             </div>
           </div>

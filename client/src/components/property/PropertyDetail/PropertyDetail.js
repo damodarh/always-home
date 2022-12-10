@@ -39,7 +39,15 @@ const PropertyDetail = (props) => {
       <div className='row'>
         <div className='col-lg-6'>
           <img
-            src={`${property.images[0] ? btoa(String.fromCharCode(...new Uint8Array(property.images[0].data.data))) : 'img/no_img.jpg'}`}
+            src={`data:${property.images[0].contentType};base64,${
+              property.images[0]
+                ? btoa(
+                    String.fromCharCode(
+                      ...new Uint8Array(property.images[0].data.data)
+                    )
+                  )
+                : "img/no_img.jpg"
+            }`}
             className='rounded title-image'
             alt='main'
           />
@@ -47,7 +55,7 @@ const PropertyDetail = (props) => {
         <div className='col-lg-6 ps-0'>
           <div className='row h-100'>
             {property.images.length !== 0 ? (
-              property.images.map((image, id) => {
+              property.images.slice(1).map((image, id) => {
                 return (
                   <div className='col-md-6' key={id}>
                     <img
