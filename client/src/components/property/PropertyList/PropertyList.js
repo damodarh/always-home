@@ -37,7 +37,7 @@ const PropertyList = (props) => {
     images: [],
     rating: 0,
     avgCost: 0,
-    availability: "",
+    available: true,
     distance: "",
     favorite: false,
   });
