@@ -138,47 +138,19 @@ router.post("/", [auth, upload.array("images")], async (req, res) => {
 /* PUT - Update/Edit an existing property */
 router.put("/:id", [auth, upload.array("images")], async (req, res) => {
   const {
-    title,
-    host,
-    reviews,
     pricePerNight,
     cleaningFee,
     serviceFee,
-    bedroom,
-    beds,
-    bath,
-    rating,
     avgCost,
-    availability,
-    distance,
-    favorite,
-    address,
   } = req.body;
 
   //Build property object
   const propertyFields = {};
   propertyFields.user = req.user.id;
-  if (title) propertyFields.title = title;
-  if (host) propertyFields.host = host;
-  if (reviews) propertyFields.reviews = reviews;
   if (pricePerNight) propertyFields.pricePerNight = pricePerNight;
   if (cleaningFee) propertyFields.cleaningFee = cleaningFee;
   if (serviceFee) propertyFields.serviceFee = serviceFee;
-  if (bedroom) propertyFields.bedroom = bedroom;
-  if (beds) propertyFields.beds = beds;
-  if (bath) propertyFields.bath = bath;
-  if (rating) propertyFields.rating = rating;
   if (avgCost) propertyFields.avgCost = avgCost;
-  if (availability) propertyFields.availability = availability;
-  if (distance) propertyFields.distance = distance;
-  if (favorite) propertyFields.favorite = favorite;
-  propertyFields.address = {};
-  if (address) {
-    if (address.city) propertyFields.address.city = address.city;
-    if (address.state) propertyFields.address.state = address.state;
-    if (address.country) propertyFields.address.country = address.country;
-    if (address.zipCode) propertyFields.address.zipCode = address.zipCode;
-  }
   propertyFields.images = [];
   if (req.files) {
     req.files.map((file) => {

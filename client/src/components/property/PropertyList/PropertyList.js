@@ -51,11 +51,12 @@ const PropertyList = (props) => {
 
     const filter = (propertyList) => {
         return propertyList.filter((property) => {
+            console.log(property)
             return (
-                property.title
+                property.title && property.title
                     .toLowerCase()
                     .includes(props.searchText.toLowerCase()) ||
-                property.city
+                property.city && property.city
                     .toLowerCase()
                     .includes(props.searchText.toLowerCase())
             );

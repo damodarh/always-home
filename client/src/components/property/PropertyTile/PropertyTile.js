@@ -78,7 +78,7 @@ const PropertyTile = (props) => {
             <div className={`carousel-item ${"active"}`}>
               <div className='card-image'>
                 <img
-                  src={'img/no_img.jpg'}
+                  src={"img/no_img.jpg"}
                   className='card-img-top'
                   data-bs-toggle='modal'
                   data-bs-property={property}
@@ -117,6 +117,11 @@ const PropertyTile = (props) => {
       </div>
       <div className='card-body'>
         <ul className='list-group list-group-flush'>
+          <li className='list-group-item border-0'>
+            <span>
+              <h5><b>{property.title}</b></h5>
+            </span>
+          </li>
           <li className='list-group-item border-0'>
             <span>
               <b>
