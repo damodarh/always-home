@@ -15,6 +15,7 @@ import AlwaysHomeFooter from './components/AlwaysHomeFooter/AlwaysHomeFooter';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Landing from './components/Layout/Landing';
+import AddProperty from './components/property/AddProperty/AddProperty';
 
 if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -55,6 +56,9 @@ function App() {
                             ></Route>
                             <PrivateRoute exact path='/properties'>
                                 <PropertyList searchText={searchText} />
+                            </PrivateRoute>
+                            <PrivateRoute exact path='/add-property'>
+                                <AddProperty />
                             </PrivateRoute>
                         </div>
                     </Switch>

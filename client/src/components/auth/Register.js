@@ -21,7 +21,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         console.log(e.target.name, e.target.checked, isHost)
         setFormData({
             ...formData,
-            [e.target.name]: e.target.checked ?? e.target.value,
+            [e.target.name]: e.target.checked ? e.target.checked : e.target.value,
         });}
 
     const onSubmit = async (e) => {
