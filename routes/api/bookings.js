@@ -49,11 +49,11 @@ router.post("/", auth , async (req, res) => {
 
 
 /*GET - show all booking for a user*/
-router.get("/:id", async (req, res) => {
+router.get("/:id", auth, async (req, res) => {
     try {
         const booking = await Booking.find({ _id: req.params.id });
-        if (!booking) return res.status(404).json({ msg: "Booking not found" });
-        if (req.user.id === booking.user) return res.json(booking);
+        if (!booking.length) return res.status(404).json({ msg: "Booking not found" });
+        if (req.user.id === booking.user.toString()) return res.json(booking);
     } catch (err) {
       console.error(err.message);
       if (err.kind === "ObjectId")
