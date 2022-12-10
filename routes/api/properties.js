@@ -2,6 +2,7 @@ const express = require("express");
 const auth = require("../../middleware/auth");
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 const router = express.Router();
 const { check, validationResult } = require("express-validator");
@@ -9,29 +10,17 @@ const Property = require("../../models/Property");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb("Cant create", "uploads/");
+    cb(null, "./client/public/uploads/");
   },
   filename: function (req, file, cb) {
     cb(
       null,
-      file.fieldname +
-        "-" +
-        new Date().toISOString().replace(/:/g, "-") +
-        path.extname(file.originalname)
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
     );
   },
 });
 
-const fileFilter = (req, file, cb) => {
-  const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png"];
-  if (allowedFileTypes.includes(file.mimetype)) {
-    cb(null, true);
-  } else {
-    cb("Please upload images only.", false);
-  }
-};
-
-let upload = multer();
+let upload = multer({ storage: storage });
 
 // @route GET api/properties
 // @desc Get all properties
@@ -116,14 +105,14 @@ router.post("/", [auth, upload.array("images")], async (req, res) => {
   if (req.files) {
     req.files.map((file) => {
       const obj = {
-        img: {
-          data: file.buffer,
-          contentType: file.mimetype,
-        },
+        data: fs.readFileSync(
+          path.join("./client/public/uploads/" + file.filename)
+        ),
+        contentType: file.mimetype,
       };
+      propertyFields.images.push(obj);
     });
   }
-  propertyFields.images = req.files;
 
   try {
     // let property = await Property.findOne({ user: req.user.id });
@@ -147,7 +136,7 @@ router.post("/", [auth, upload.array("images")], async (req, res) => {
 });
 
 /* PUT - Update/Edit an existing property */
-router.put("/:id", [auth, upload.single("images")], async (req, res) => {
+router.put("/:id", [auth, upload.array("images")], async (req, res) => {
   const {
     title,
     host,
@@ -165,7 +154,7 @@ router.put("/:id", [auth, upload.single("images")], async (req, res) => {
     favorite,
     address,
   } = req.body;
-  console.log(req.file);
+
   //Build property object
   const propertyFields = {};
   propertyFields.user = req.user.id;
@@ -190,14 +179,30 @@ router.put("/:id", [auth, upload.single("images")], async (req, res) => {
     if (address.country) propertyFields.address.country = address.country;
     if (address.zipCode) propertyFields.address.zipCode = address.zipCode;
   }
-  propertyFields.images = {};
+  propertyFields.images = [];
+  if (req.files) {
+    req.files.map((file) => {
+      const obj = {
+        data: fs.readFileSync(
+          path.join("./client/public/uploads/" + file.filename)
+        ),
+        contentType: file.mimetype,
+      };
+      propertyFields.images.push(obj);
+    });
+  }
 
   try {
-    let property = await Property.findOneAndUpdate(
-      { user: req.params.id },
-      { $set: req.body },
-      { new: true }
-    );
+    let property = await Property.findOne({ user: req.user.id });
+    if (property) {
+      //Update
+      property = await Property.findOneAndUpdate(
+        { user: req.user.id },
+        { $set: propertyFields },
+        { new: true }
+      );
+      return res.json(property);
+    }
     return res.json(property);
   } catch (err) {
     console.error(err.message);

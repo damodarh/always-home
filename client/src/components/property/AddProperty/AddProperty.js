@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import axios from 'axios';
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
+import axios from "axios";
 
 const AddProperty = (props) => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [redirect, setRedirect] = useState(false);
   const [fileLimit, setFileLimit] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
@@ -37,6 +38,7 @@ const AddProperty = (props) => {
           return true;
         }
       }
+      return false;
     });
     if (!limitExceeded) setUploadedFiles(uploaded);
   };
@@ -53,52 +55,57 @@ const AddProperty = (props) => {
     e.preventDefault();
 
     const formDataNew = { ...formData, images: [...uploadedFiles] };
-    console.log(formDataNew);
-    //login(email, password);
     let formDataApi = new FormData();
-    console.log(Object.keys(formDataNew));
     Object.keys(formDataNew).forEach((key) => {
       if (key === "images") {
-        for(let i =0; i < uploadedFiles.length; i++) {
-            formDataApi.append("images", uploadedFiles[i]);
-    }
-      }
-      else formDataApi.append(`${key}`, formDataNew[key]);
+        for (let i = 0; i < uploadedFiles.length; i++) {
+          formDataApi.append("images", uploadedFiles[i]);
+        }
+      } else formDataApi.append(`${key}`, formDataNew[key]);
     });
     const config = {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     };
-    axios.post("/api/properties", formDataApi, config)
-        .then (res => {
-            console.log(res.data);
-        })
+    axios.post("/api/properties", formDataApi, config).then((res) => {
+      setRedirect(true);
+    });
+  };
+
+  const deleteUploadedImage = (e) => {
+    const uploadedFilesClone = uploadedFiles.filter(
+      (image, index) => index !== e
+    );
+    setUploadedFiles(uploadedFilesClone);
   };
 
   const {
     title,
     host,
-    reviews,
     pricePerNight,
     cleaningFee,
     serviceFee,
     bedroom,
     beds,
     bath,
-    rating,
     avgCost,
-    availability,
     distance,
-    favorite,
     address,
   } = formData;
+
+  if (redirect) return <Redirect to='/properties' />;
 
   return (
     <div>
       <div className='w-75 ms-5 mt-3 register'>
         <h1 className='large text-primary'>Add Property</h1>
-        <form className='form' onSubmit={onSubmit} enctype="multipart/form-data" noValidate>
+        <form
+          className='form'
+          onSubmit={onSubmit}
+          enctype='multipart/form-data'
+          noValidate
+        >
           <div className='row'>
             <div className='form-group required col-3'>
               <label className='form-label control-label'>Title</label>
@@ -211,6 +218,24 @@ const AddProperty = (props) => {
               </div>
             </div>
             <div className='form-group required col-3'>
+              <label className='form-label control-label'>Beds</label>
+              <div className='mb-3'>
+                <select
+                  className='form-select'
+                  name='beds'
+                  value={beds}
+                  onChange={(e) => onChange(e)}
+                  required
+                >
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                  <option value={3}>3</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='form-group required col-3'>
               <label className='form-label control-label'>
                 Average Cost (USD)
               </label>
@@ -226,8 +251,6 @@ const AddProperty = (props) => {
                 />
               </div>
             </div>
-          </div>
-          <div className='row'>
             <div className='form-group required col-3'>
               <label className='form-label control-label'>Distance</label>
               <div className='mb-3'>
@@ -283,7 +306,14 @@ const AddProperty = (props) => {
                     <img
                       className='img-responsive w-75 h-75 border border-1'
                       src={URL.createObjectURL(file)}
+                      alt={`upload-${index}`}
                     />
+                    <button
+                      className='btn btn-danger btn-sm ms-2'
+                      onClick={() => deleteUploadedImage(index)}
+                    >
+                      X
+                    </button>
                   </div>
                 ))}
               </div>
