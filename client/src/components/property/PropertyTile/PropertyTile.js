@@ -52,28 +52,43 @@ const PropertyTile = (props) => {
           ></button>
         </div>
         <div className='carousel-inner'>
-          {property.images.map((img, index) => {
-            console.log(img.data.data);
-            return (
-              <div
-                className={`carousel-item ${index === 0 && "active"}`}
-                key={index}
-              >
-                <div className='card-image'>
-                  <img
-                    src={`data:${img.contentType};base64,
+          {property.images.length !== 0 ? (
+            property.images.map((img, index) => {
+              return (
+                <div
+                  className={`carousel-item ${index === 0 && "active"}`}
+                  key={index}
+                >
+                  <div className='card-image'>
+                    <img
+                      src={`data:${img.contentType};base64,
               ${btoa(String.fromCharCode(...new Uint8Array(img.data.data)))}`}
-                    className='card-img-top'
-                    data-bs-toggle='modal'
-                    data-bs-property={property}
-                    data-bs-target='#detailModal'
-                    alt={`prop-img-${index}`}
-                    onClick={() => props.toggleModal(props.id)}
-                  />
+                      className='card-img-top'
+                      data-bs-toggle='modal'
+                      data-bs-property={property}
+                      data-bs-target='#detailModal'
+                      alt={`prop-img-${index}`}
+                      onClick={() => props.toggleModal(props.id)}
+                    />
+                  </div>
                 </div>
+              );
+            })
+          ) : (
+            <div className={`carousel-item ${"active"}`}>
+              <div className='card-image'>
+                <img
+                  src={'img/no_img.jpg'}
+                  className='card-img-top'
+                  data-bs-toggle='modal'
+                  data-bs-property={property}
+                  data-bs-target='#detailModal'
+                  alt={"no-image"}
+                  onClick={() => props.toggleModal(props.id)}
+                />
               </div>
-            );
-          })}
+            </div>
+          )}
         </div>
         <button
           className='carousel-control-prev'
