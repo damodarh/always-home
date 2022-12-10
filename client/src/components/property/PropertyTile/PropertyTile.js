@@ -119,7 +119,9 @@ const PropertyTile = (props) => {
         <ul className='list-group list-group-flush'>
           <li className='list-group-item border-0'>
             <span>
-              <h5><b>{property.title}</b></h5>
+              <h5>
+                <b>{property.title}</b>
+              </h5>
             </span>
           </li>
           <li className='list-group-item border-0'>

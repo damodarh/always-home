@@ -1,34 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Select from "react-select";
 import axios from "axios";
 import { setAlert } from "../../../actions/alert";
+import { useLocation } from "react-router";
 
-const AddProperty = ({ setAlert }) => {
+const UpdatePropertyDetail = ({ setAlert }) => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
-  const [redirect, setRedirect] = useState(false);
+  const [property, setProperty] = useState({});
   const [fileLimit, setFileLimit] = useState(false);
   const [amenities, setAmenities] = useState([]);
   const [formData, setFormData] = useState({
-    title: "",
-    host: "",
-    reviews: 0,
     pricePerNight: 0,
     cleaningFee: 0,
     serviceFee: 0,
-    bedroom: 0,
-    beds: 0,
-    bath: 0,
-    rating: 0,
     avgCost: 0,
-    availability: 0,
-    distance: 0,
-    favorite: false,
-    city: "",
-    state: "",
-    country: "",
-    zipCode: 0,
   });
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const property = location.state.property;
+    const { pricePerNight, cleaningFee, serviceFee, avgCost } = property;
+    setFormData({
+      pricePerNight,
+      cleaningFee,
+      serviceFee,
+      avgCost,
+    });
+    let images = property.images.map(image => new Blob([new Uint8Array(image.data.data)], {type: image.contentType }))
+    setUploadedFiles(images)
+    setAmenities(options.filter((option) => property.amenities.includes(option.value)))
+    setProperty(property);
+  }, []);
 
   const handleUploadFiles = (files) => {
     const uploaded = [...uploadedFiles];
@@ -60,7 +64,7 @@ const AddProperty = ({ setAlert }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     let amenitiesTemp = [];
-    amenities.map(option => amenitiesTemp.push(option.value))
+    amenities.map((option) => amenitiesTemp.push(option.value));
     const formDataNew = {
       ...formData,
       images: [...uploadedFiles],
@@ -79,9 +83,12 @@ const AddProperty = ({ setAlert }) => {
         "Content-Type": "multipart/form-data",
       },
     };
-    axios.post("/api/properties", formDataApi, config).then((res) => {
-      setAlert("Property hosted successfully!", "success");
-    });
+
+    axios
+      .post(`/api/properties/${property._id}`, formDataApi, config)
+      .then((res) => {
+        setAlert("Property details updated successfully!", "success");
+      });
   };
 
   const deleteUploadedImage = (e) => {
@@ -95,22 +102,7 @@ const AddProperty = ({ setAlert }) => {
     setAmenities(amenities);
   };
 
-  const {
-    title,
-    host,
-    pricePerNight,
-    cleaningFee,
-    serviceFee,
-    bedroom,
-    beds,
-    bath,
-    avgCost,
-    distance,
-    city,
-    state,
-    country,
-    zipCode,
-  } = formData;
+  const { pricePerNight, cleaningFee, serviceFee, avgCost } = formData;
 
   const options = [
     { value: "Wifi", label: "Wifi" },
@@ -122,41 +114,13 @@ const AddProperty = ({ setAlert }) => {
   return (
     <div>
       <div className='w-75 ms-5 mt-3 register'>
-        <h1 className='large text-primary'>Add Property</h1>
+        <h1 className='large text-primary'>Update Property Details</h1>
         <form
           className='form'
           onSubmit={onSubmit}
           enctype='multipart/form-data'
         >
           <div className='row'>
-            <div className='form-group required col-3'>
-              <label className='form-label control-label'>Title</label>
-              <div className='mb-3'>
-                <input
-                  type='text'
-                  className='form-control'
-                  placeholder='Property Title'
-                  name='title'
-                  value={title}
-                  onChange={(e) => onChange(e)}
-                  required
-                />
-              </div>
-            </div>
-            <div className='form-group required col-3'>
-              <label className='form-label control-label'>Host</label>
-              <div className='mb-3'>
-                <input
-                  type='text'
-                  className='form-control'
-                  placeholder='Host'
-                  name='host'
-                  value={host}
-                  onChange={(e) => onChange(e)}
-                  required
-                />
-              </div>
-            </div>
             <div className='form-group required col-3'>
               <label className='form-label control-label'>
                 Price per Night
@@ -189,8 +153,6 @@ const AddProperty = ({ setAlert }) => {
                 />
               </div>
             </div>
-          </div>
-          <div className='row'>
             <div className='form-group required col-3'>
               <label className='form-label control-label'>
                 Service Fee (USD)
@@ -205,54 +167,6 @@ const AddProperty = ({ setAlert }) => {
                   onChange={(e) => onChange(e)}
                   required
                 />
-              </div>
-            </div>
-            <div className='form-group required col-3'>
-              <label className='form-label control-label'>Bedrooms</label>
-              <div className='mb-3'>
-                <select
-                  className='form-select'
-                  name='bedroom'
-                  value={bedroom}
-                  onChange={(e) => onChange(e)}
-                  required
-                >
-                  <option value={1}>1</option>
-                  <option value={2}>2</option>
-                  <option value={3}>3</option>
-                </select>
-              </div>
-            </div>
-            <div className='form-group required col-3'>
-              <label className='form-label control-label'>Bath</label>
-              <div className='mb-3'>
-                <select
-                  className='form-select'
-                  name='bath'
-                  value={bath}
-                  onChange={(e) => onChange(e)}
-                  required
-                >
-                  <option value={1}>1</option>
-                  <option value={2}>2</option>
-                  <option value={3}>3</option>
-                </select>
-              </div>
-            </div>
-            <div className='form-group required col-3'>
-              <label className='form-label control-label'>Beds</label>
-              <div className='mb-3'>
-                <select
-                  className='form-select'
-                  name='beds'
-                  value={beds}
-                  onChange={(e) => onChange(e)}
-                  required
-                >
-                  <option value={1}>1</option>
-                  <option value={2}>2</option>
-                  <option value={3}>3</option>
-                </select>
               </div>
             </div>
           </div>
@@ -274,20 +188,6 @@ const AddProperty = ({ setAlert }) => {
               </div>
             </div>
             <div className='form-group required col-3'>
-              <label className='form-label control-label'>Distance</label>
-              <div className='mb-3'>
-                <input
-                  type='number'
-                  className='form-control'
-                  placeholder='Distance'
-                  name='distance'
-                  value={distance}
-                  onChange={(e) => onChange(e)}
-                  required
-                />
-              </div>
-            </div>
-            <div className='form-group required col-3'>
               <label className='form-label control-label'>Amenities</label>
               <div className='mb-3'>
                 <Select
@@ -296,64 +196,6 @@ const AddProperty = ({ setAlert }) => {
                   onChange={handleSelectChange}
                   options={options}
                 />
-              </div>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='form-group required col-3'>
-              <label className='form-label control-label'>City</label>
-              <div className='mb-3'>
-                <input
-                  type='text'
-                  className='form-control'
-                  placeholder='City'
-                  name='city'
-                  value={city}
-                  onChange={(e) => onChange(e)}
-                  required
-                />
-              </div>
-            </div>
-            <div className='form-group required col-3'>
-              <label className='form-label control-label'>State</label>
-              <div className='mb-3'>
-                <input
-                  type='text'
-                  className='form-control'
-                  placeholder='State'
-                  name='state'
-                  value={state}
-                  onChange={(e) => onChange(e)}
-                  required
-                />
-              </div>
-            </div>
-            <div className='form-group required col-3'>
-              <label className='form-label control-label'>Country</label>
-              <div className='mb-3'>
-                <input
-                  type='text'
-                  className='form-control'
-                  placeholder='Country'
-                  name='country'
-                  value={country}
-                  onChange={(e) => onChange(e)}
-                  required
-                />
-              </div>
-            </div>
-            <div className='form-group required col-3'>
-              <label className='form-label control-label'>Zip Code</label>
-              <div className='mb-3'>
-                <input
-                  type='number'
-                  className='form-control'
-                  placeholder='Zip'
-                  name='zipCode'
-                  value={zipCode}
-                  onChange={(e) => onChange(e)}
-                  required
-                ></input>
               </div>
             </div>
           </div>
@@ -401,7 +243,7 @@ const AddProperty = ({ setAlert }) => {
             <input
               type='submit'
               className='btn btn-primary'
-              value='Host Property'
+              value='Update Property Details'
             />
           </div>
         </form>
@@ -410,4 +252,4 @@ const AddProperty = ({ setAlert }) => {
   );
 };
 
-export default connect(null, { setAlert })(AddProperty);
+export default connect(null, { setAlert })(UpdatePropertyDetail);

@@ -24,7 +24,7 @@ const PropertyDetail = (props) => {
               <span className='ms-1'>{property.rating.toFixed(2)}</span>
               <span className='dot'>.</span>
               <span>
-                <u>{property.reviews} reviews</u>
+                {/* <u>{property.reviews} reviews</u> */}
               </span>
             </span>
             <span className='dot'>.</span>
@@ -145,7 +145,7 @@ const PropertyDetail = (props) => {
                     <span className='ms-1'>{property.rating.toFixed(2)}</span>
                     <span className='dot'>.</span>
                     <span className='text-muted'>
-                      <u>{property.reviews} reviews</u>
+                      {/* <u>{property.reviews} reviews</u> */}
                     </span>
                   </span>
                 </div>

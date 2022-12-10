@@ -24,9 +24,6 @@ const PropertySchema = new mongoose.Schema({
   host: {
     type: String,
   },
-  reviews: {
-    type: Number,
-  },
   pricePerNight: {
     type: Number,
   },
@@ -82,6 +79,9 @@ const PropertySchema = new mongoose.Schema({
       text: {
         type: String,
         required: true,
+      },
+      rating: {
+        type: Number,
       },
       date: {
         type: Date,

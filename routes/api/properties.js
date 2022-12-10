@@ -77,6 +77,7 @@ router.post("/", [auth, upload.array("images")], async (req, res) => {
     state,
     country,
     zipCode,
+    amenities,
   } = req.body;
 
   //Build property object
@@ -84,7 +85,10 @@ router.post("/", [auth, upload.array("images")], async (req, res) => {
   propertyFields.user = req.user.id;
   if (title) propertyFields.title = title;
   if (host) propertyFields.host = host;
-  if (reviews) propertyFields.reviews = reviews;
+  if (reviews) {
+    propertyFields.reviews = [];
+    reviews.map((review) => propertyFields.reviews.push(review));
+  }
   if (pricePerNight) propertyFields.pricePerNight = pricePerNight;
   if (cleaningFee) propertyFields.cleaningFee = cleaningFee;
   if (serviceFee) propertyFields.serviceFee = serviceFee;
@@ -100,6 +104,12 @@ router.post("/", [auth, upload.array("images")], async (req, res) => {
   if (state) propertyFields.state = state;
   if (country) propertyFields.country = country;
   if (zipCode) propertyFields.zipCode = zipCode;
+  propertyFields.amenities = [];
+  if (amenities) {
+    amenities
+      .split(",")
+      .map((amenity) => propertyFields.amenities.push(amenity));
+  }
 
   propertyFields.images = [];
   if (req.files) {
@@ -183,7 +193,7 @@ router.delete("/:id", auth, async (req, res) => {
       { $set: property },
       { new: true }
     );
-    return res.json(property);
+    return res.status(200).send("Property taken off market succesfully");
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
@@ -202,7 +212,7 @@ router.put("/available/:id", auth, async (req, res) => {
       { $set: property },
       { new: true }
     );
-    return res.json(property);
+    return res.status(200).send("Property is back on the market!");
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");

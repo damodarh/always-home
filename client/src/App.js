@@ -17,6 +17,7 @@ import Register from "./components/auth/Register";
 import Landing from "./components/Layout/Landing";
 import AddProperty from "./components/property/AddProperty/AddProperty";
 import Profile from "./components/Layout/Profile";
+import UpdatePropertyDetail from "./components/property/UpdatePropertyDetail/UpdatePropertyDetail";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -52,6 +53,9 @@ function App() {
               </PrivateRoute>
               <PrivateRoute exact path='/add-property'>
                 <AddProperty />
+              </PrivateRoute>
+              <PrivateRoute exact path='/update-property'>
+                <UpdatePropertyDetail />
               </PrivateRoute>
               <PrivateRoute exact path='/profile'>
                 <Profile />
