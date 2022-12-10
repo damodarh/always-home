@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const PropertySchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
-},
+    ref: "user",
+  },
   title: {
     type: String,
   },
@@ -36,9 +36,11 @@ const PropertySchema = new mongoose.Schema({
   serviceFee: {
     type: Number,
   },
-  amenities: {
-    type: Array,
-  },
+  amenities: [
+    {
+      type: String,
+    },
+  ],
   bedroom: {
     type: Number,
   },
@@ -71,6 +73,22 @@ const PropertySchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  reviews: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
+      },
+      text: {
+        type: String,
+        required: true,
+      },
+      date: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+  ],
 });
 
 module.exports = Property = mongoose.model("property", PropertySchema);
