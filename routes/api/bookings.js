@@ -110,7 +110,7 @@ router.delete("/:id", auth, async (req, res) => {
       if (b) {
         b.bookingStatus = "cancelled";
         b = await Booking.findOneAndUpdate(
-          { _id: req.params.id },
+          { _id: b._id },
           { $set: b },
           { new: true }
         );
