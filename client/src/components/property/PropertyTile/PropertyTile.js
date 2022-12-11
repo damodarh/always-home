@@ -4,6 +4,16 @@ import "./PropertyTile.scss";
 const PropertyTile = (props) => {
   const property = { ...props.property };
 
+  const _arrayBufferToBase64 = (buffer) => {
+    var binary = "";
+    var bytes = new Uint8Array(buffer);
+    var len = bytes.byteLength;
+    for (var i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+  };
+
   return (
     <div className='card col-4 mt-3 card-add-ons' key={props.id}>
       <div>
@@ -61,8 +71,7 @@ const PropertyTile = (props) => {
                 >
                   <div className='card-image'>
                     <img
-                      src={`data:${img.contentType};base64,
-              ${btoa(String.fromCharCode(...new Uint8Array(img.data.data)))}`}
+                      src={`data:${img.contentType};base64,${_arrayBufferToBase64(img.data.data)}`}
                       className='card-img-top'
                       data-bs-toggle='modal'
                       data-bs-property={property}

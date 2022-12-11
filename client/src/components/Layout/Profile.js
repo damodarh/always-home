@@ -12,7 +12,7 @@ const Profile = ({ setAlert, auth: { user } }) => {
   const history = useHistory();
   useEffect(() => {
     axios.get("/api/properties").then((resp) => setProperties(resp.data));
-    axios.get('/api/bookings').then(res => console.log(res.data));
+    axios.get("/api/bookings").then((res) => setBookings(res.data));
   }, []);
 
   const offMarket = (property) => {
@@ -97,10 +97,57 @@ const Profile = ({ setAlert, auth: { user } }) => {
                 </ul>
               </Fragment>
             )}
-          </div> 
-          <div className="w-75 mt-5 pt-5">
-          <h2 className='large text-primary'>My Bookings</h2>
-
+          </div>
+          <div className='w-75 mt-5 pt-5'>
+            <div class='container shadow py-2'>
+              <div class='container network_wrapper col-sm p-2 '>
+                <div class='card'>
+                  <div class='card-header'>
+                    <h5 class='text-primary card-title'>My Bookings</h5>
+                    <ul
+                      class='nav nav-tabs card-header-tabs'
+                      data-bs-tabs='tabs'
+                    >
+                      <li class='nav-item'>
+                        <a
+                          class='nav-link active'
+                          aria-current='true'
+                          data-bs-toggle='tab'
+                          href='#dhcp'
+                        >
+                          Completed
+                        </a>
+                      </li>
+                      <li class='nav-item'>
+                        <a class='nav-link' data-bs-toggle='tab' href='#static'>
+                          Cancelled
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class='card-body tab-content'>
+                    <div class='tab-pane active' id='dhcp'>
+                      {bookings
+                        .filter(
+                          (booking) => booking.bookingStatus === "completed"
+                        )
+                        .map((booking) => {
+                          return <div>{booking.title}</div>;
+                        })}
+                    </div>
+                    <div class='tab-pane' id='static'>
+                      {bookings
+                        .filter(
+                          (booking) => booking.bookingStatus === "cancelled"
+                        )
+                        .map((booking) => {
+                          return <div>{booking.title}</div>;
+                        })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className='col-xs-6 w-50'>

@@ -12,7 +12,6 @@ const AddProperty = ({ setAlert }) => {
   const [formData, setFormData] = useState({
     title: "",
     host: "",
-    reviews: 0,
     pricePerNight: 0,
     cleaningFee: 0,
     serviceFee: 0,

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import axios from 'axios';
+import axios from "axios";
 import { setAlert } from "../../actions/alert";
-import moment from 'moment';
+import moment from "moment";
 import { connect } from "react-redux";
 
 const BookingHandler = (props) => {
   const [property, setProperty] = useState({});
+  const [booked, setBooked] = useState(false);
 
   const location = useLocation();
 
@@ -16,17 +17,26 @@ const BookingHandler = (props) => {
   }, []);
 
   const addBooking = () => {
-    console.log(property);
     let booking = {
-        title: property.title,
-        city: property.city,
-        guestName: '',
-        hostName: property.host,
-        checkinDate: moment('04/19/2023').format('MM/dd/YYYY'),
-        checkinDate: moment('04/23/2023').format('MM/dd/YYYY'),
-        bookingStatus: 'completed'
+      title: property.title,
+      city: property.city,
+      guestName: "",
+      hostName: property.host,
+      checkinDate: moment("04/19/2023").format("MM/dd/YYYY"),
+      checkinDate: moment("04/23/2023").format("MM/dd/YYYY"),
+      bookingStatus: "completed",
     };
-    axios.post('/api/bookings',booking).then(res => props.setAlert('Booking Confirmed!', 'success'));
+    axios.post(`/api/bookings/${property._id}`, booking).then((res) => {
+      props.setAlert("Booking Confirmed!", "success");
+      setBooked(true);
+    });
+  };
+
+  const cancelBooking = () => {
+    axios.delete(`/api/bookings/${property._id}`).then((res) => {
+      props.setAlert(`${res.data.msg}`, "success");
+      setBooked(false);
+    });
   };
 
   return (
@@ -158,6 +168,14 @@ const BookingHandler = (props) => {
                 >
                   Book
                 </button>
+                {booked && (
+                  <button
+                    className='btn btn-danger align-items-center'
+                    onClick={cancelBooking}
+                  >
+                    Cancel
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -167,4 +185,4 @@ const BookingHandler = (props) => {
   );
 };
 
-export default connect(null, {setAlert})(BookingHandler);
+export default connect(null, { setAlert })(BookingHandler);

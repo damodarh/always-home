@@ -5,6 +5,16 @@ import "./PropertyDetail.scss";
 const PropertyDetail = (props) => {
   const property = { ...props.property };
 
+  const _arrayBufferToBase64 = ( buffer ) => {
+    var binary = '';
+    var bytes = new Uint8Array( buffer );
+    var len = bytes.byteLength;
+    for (var i = 0; i < len; i++) {
+        binary += String.fromCharCode( bytes[ i ] );
+    }
+    return window.btoa( binary );
+  }
+
   return (
     <div className='property-detail'>
       <div>
@@ -60,7 +70,7 @@ const PropertyDetail = (props) => {
                   <div className='col-md-6' key={id}>
                     <img
                       src={`data:${image.contentType};base64,
-              ${btoa(String.fromCharCode(...new Uint8Array(image.data.data)))}`}
+              ${_arrayBufferToBase64(image.data.data)}`}
                       className='rounded sub-image'
                       alt='other'
                     />

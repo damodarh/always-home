@@ -7,7 +7,7 @@ const Booking = require("../../models/Booking");
 // @route POST api/booking
 // @desc Create a booking
 // @access Private
-router.post("/", auth, async (req, res) => {
+router.post("/:id", auth, async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
@@ -74,11 +74,14 @@ router.post("/:id", auth, async (req, res) => {
 
   try {
     let booking = await Booking.find({ user: req.user.id });
-    if(!booking) return res.status(404).json({msg: 'No bookings have been made!'})
+    if (!booking)
+      return res.status(404).json({ msg: "No bookings have been made!" });
     if (booking[0].user.toString() === req.user.id) {
-      let b = booking.find((book) => book._id.toString() === req.params.id.trim());
-      console.log(b)
-      if(!b) return res.status(404).json({msg: 'Booking not found!'})
+      let b = booking.find(
+        (book) => book._id.toString() === req.params.id.trim()
+      );
+      console.log(b);
+      if (!b) return res.status(404).json({ msg: "Booking not found!" });
       if (check_in_date) b.check_in_date = check_in_date;
       if (check_out_date) b.check_out_date = check_out_date;
       booking = await Booking.findOneAndUpdate(
@@ -99,16 +102,21 @@ router.post("/:id", auth, async (req, res) => {
 router.delete("/:id", auth, async (req, res) => {
   try {
     let booking = await Booking.find({ user: req.user.id });
-    console.log(booking)
-    console.log(req.params.id)
     if (!booking) return res.status(404).json({ msg: "Booking not made!" });
-    if(booking[0].user.toString() === req.user.id){
-        let b = booking.find((book) => book._id.toString() === req.params.id.trim());  
-        console.log(b)
-        booking = await Booking.findOneAndRemove(
-        { _id: req.params.id }
+    if (booking[0].user.toString() === req.user.id) {
+      let b = booking.find(
+        (book) => book.property.toString() === req.params.id.trim()
       );
-      return res.json(booking);
+      if (b) {
+        b.bookingStatus = "cancelled";
+        b = await Booking.findOneAndUpdate(
+          { _id: req.params.id },
+          { $set: b },
+          { new: true }
+        );
+        return res.status(200).json({ msg: "Booking cancelled successfully" });
+      }
+      return res.status(500).json({ msg: "Error in cancelling booking" });
     }
   } catch (err) {
     console.error(err.message);
