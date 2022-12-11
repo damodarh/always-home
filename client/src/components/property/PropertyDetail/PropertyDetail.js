@@ -1,6 +1,7 @@
 import React from "react";
 import "./PropertyDetail.scss";
 
+
 const PropertyDetail = (props) => {
   const property = { ...props.property };
 
@@ -189,11 +190,17 @@ const PropertyDetail = (props) => {
                   </div>
                 </div>
               </div>
+              <input 
+                        type='button' /*add onclick*/
+                        className='btn'
+                        value='Reserve'
+                /> 
             </div>
           </div>
         </div>
       </div>
     </div>
+    
   );
 };
 
