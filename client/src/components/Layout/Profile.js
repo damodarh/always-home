@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { setAlert } from "../../actions/alert";
 import { useHistory } from "react-router";
 
-const Profile = ({ setAlert }) => {
+const Profile = ({ setAlert, auth: { user } }) => {
   const [properties, setProperties] = useState([]);
 
   const history = useHistory();
@@ -50,41 +50,60 @@ const Profile = ({ setAlert }) => {
   };
 
   const updatePropertyDetails = (property) => {
-    history.push({ pathname: "/update-property", state: { property: property } });
+    history.push({
+      pathname: "/update-property",
+      state: { property: property },
+    });
   };
 
   return (
-    <div>
-      <ul className='list-group list-group-horizontal'>
-        {properties.map((property, index) => {
-          return (
-            <li
-              clasName='list-group-item d-flex justify-content-between align-items-center'
-              key={index}
-            >
-              <div>
-                <span>{property.title}</span>
-                <button
-                  className='btn btn-primary btn-sm'
-                  onClick={() => updatePropertyDetails(property)}
-                >
-                  Update property details
-                </button>
-                <button
-                  className={`btn btn-sm btn-${
-                    property.available ? "danger" : "primary"
-                  }`}
-                  onClick={() => offMarket(property)}
-                >
-                  {property.available
-                    ? "Take property off market"
-                    : "Lease property"}
-                </button>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+    <div clasName='container'>
+      <div className='row'>
+        <div className='col-xs-6 w-50'>
+          <div className='w-75'>
+          <h2 className='large text-primary'>My Properties</h2>
+          <ul className='list-group'>
+            {properties.map((property, index) => {
+              return (
+                <li clasName='list-group-item' key={index}>
+                  <div className=''>
+                    <div className=''>
+                      <span className=''>{property.title}</span>
+                      <button
+                        className='btn btn-primary btn-sm'
+                        onClick={() => updatePropertyDetails(property)}
+                      >
+                        Update property details
+                      </button>
+                      <button
+                        className={`btn btn-sm btn-${
+                          property.available ? "danger" : "primary"
+                        }`}
+                        onClick={() => offMarket(property)}
+                      >
+                        {property.available
+                          ? "Take property off market"
+                          : "Lease property"}
+                      </button>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+          </div>
+        </div>
+        <div className='col-xs-6 w-50'>
+          <div className='justify-content-center row'>
+            <div className="ms-auto panel panel-default">
+            <h2 className='large text-primary'>My Info</h2>
+              <div>Name: {user.name}</div>
+              <div>Email: {user.email}</div>
+              <div>Account Type: {user.isHost ? "Host" : "Guest"}</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

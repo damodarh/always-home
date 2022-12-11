@@ -7,8 +7,9 @@ import PropertyDetail from "../PropertyDetail/PropertyDetail";
 import PropertyTile from "../PropertyTile/PropertyTile";
 import "./PropertyList.scss";
 import { Link } from "react-router-dom";
+import { loadUser } from "../../../actions/auth";
 
-const PropertyList = (props) => {
+const PropertyList = ({ searchText, auth: { user, isAuthenticated } }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [properties, setProperties] = useState([]);
 
@@ -54,30 +55,35 @@ const PropertyList = (props) => {
       return (
         property.available &&
         ((property.title &&
-          property.title
-            .toLowerCase()
-            .includes(props.searchText.toLowerCase())) ||
+          property.title.toLowerCase().includes(searchText.toLowerCase())) ||
           (property.city &&
-            property.city
-              .toLowerCase()
-              .includes(props.searchText.toLowerCase())))
+            property.city.toLowerCase().includes(searchText.toLowerCase())))
       );
     });
   };
 
   const controlFavoritesList = (id, isAuthenticated) => {
-    isAuthenticated && isAuthenticated
-      ? setProperties(
-          properties.map((property, index) =>
-            index === id
-              ? { ...property, favorite: !property.favorite }
-              : property
-          )
+    if (isAuthenticated && isAuthenticated) {
+      const favProp = properties.find((property, index) => index === id);
+      setProperties(
+        properties.map((property, index) =>
+          index === id
+            ? { ...property, favorite: !property.favorite }
+            : property
         )
-      : alert("Authenticate first");
+      );
+      favProp.favorite
+        ? axios
+            .put(`/api/users/favorites/remove/${favProp._id}`)
+            .then((res) => console.log(res))
+        : axios
+            .put(`/api/users/favorites/${favProp._id}`)
+            .then((res) => console.log(res));
+        loadUser()
+    } else alert("Authenticate first");
   };
 
-  if (!props.isAuthenticated) return <Link to='/login' />;
+  if (!isAuthenticated) return <Link to='/login' />;
 
   return (
     <div className='property-list'>
@@ -89,7 +95,7 @@ const PropertyList = (props) => {
             key={index}
             controlFavoritesList={controlFavoritesList}
             toggleModal={toggleModal}
-            isAuthenticated={props.isAuthenticated}
+            isAuthenticated={isAuthenticated}
           />
         ))}
       </div>
@@ -110,11 +116,11 @@ const PropertyList = (props) => {
 };
 
 PropertyList.propTypes = {
-  isAuthenticated: PropTypes.bool,
+  auth: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, {})(PropertyList);

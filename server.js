@@ -12,9 +12,9 @@ app.use(express.json({ extended : false}));
 app.get('/', ((req, res) => { res.send('API running') }));
 
 //Define routes
+app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/properties', require('./routes/api/properties'));
-app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/bookings', require('./routes/api/bookings'));
 
 const PORT = process.env.PORT || 6000;

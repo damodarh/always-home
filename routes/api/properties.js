@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const auth = require("../../middleware/auth");
 const multer = require("multer");
 const path = require("path");
@@ -213,6 +214,21 @@ router.put("/available/:id", auth, async (req, res) => {
       { new: true }
     );
     return res.status(200).send("Property is back on the market!");
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
+/* GET - Get favorite properties */
+router.get("/favorites/:favorites", auth, async (req, res) => {
+  try {
+    const properties = await Property.find({
+      _id: { $in: req.params.favorites.split(',') },
+    });
+    if (!properties.length)
+      return res.status(404).json({ msg: "No favorites found" });
+    return res.json(properties);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
