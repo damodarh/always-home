@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const BookingSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user',
+        ref: 'users',
     },
     property: {
         type: mongoose.Schema.Types.ObjectId,
@@ -38,4 +38,4 @@ const BookingSchema = new mongoose.Schema({
     }
 });
 
-module.exports = Booking = mongoose.model('reservation', BookingSchema);
+module.exports = Booking = mongoose.model('bookings', BookingSchema);
