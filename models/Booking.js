@@ -15,26 +15,20 @@ const BookingSchema = new mongoose.Schema({
     city: {
         type: String
     },
-    guest_first_name: {
+    guestName: {
         type: String
     },
-    guest_last_name: {
+    hostName: {
         type: String
     },
-    host_first_name: {
+    checkinDate: {
         type: String
     },
-    host_last_name: {
+    checkoutDate: {
         type: String
     },
-    check_in_date: {
+    bookingStatus: {
         type: String
-    },
-    check_out_date: {
-        type: String
-    },
-    booking_status: {
-        type: Boolean
     }
 });
 

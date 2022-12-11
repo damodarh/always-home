@@ -15,13 +15,11 @@ router.post("/", auth, async (req, res) => {
   const {
     title,
     city,
-    guest_first_name,
-    guest_last_name,
-    host_first_name,
-    host_last_name,
-    check_in_date,
-    check_out_date,
-    booking_status,
+    guestName,
+    hostName,
+    checkinDate,
+    checkoutDate,
+    bookingStatus,
   } = req.body;
 
   //Build property object
@@ -30,13 +28,11 @@ router.post("/", auth, async (req, res) => {
   bookingFields.property = req.params.id;
   if (title) bookingFields.title = title;
   if (city) bookingFields.city = city;
-  if (guest_first_name) bookingFields.guest_first_name = guest_first_name;
-  if (guest_last_name) bookingFields.guest_last_name = guest_last_name;
-  if (host_first_name) bookingFields.host_first_name = host_first_name;
-  if (host_last_name) bookingFields.host_last_name = host_last_name;
-  if (check_in_date) bookingFields.check_in_date = check_in_date;
-  if (check_out_date) bookingFields.check_out_date = check_out_date;
-  if (booking_status) bookingFields.booking_status = booking_status;
+  if (guestName) bookingFields.guestName = guestName;
+  if (hostName) bookingFields.hostName = hostName;
+  if (checkinDate) bookingFields.checkinDate = checkinDate;
+  if (checkoutDate) bookingFields.checkoutDate = checkoutDate;
+  if (bookingStatus) bookingFields.bookingStatus = bookingStatus;
 
   try {
     let booking = new Booking(bookingFields);
@@ -49,8 +45,7 @@ router.post("/", auth, async (req, res) => {
 });
 
 /*GET - show all booking for a user*/
-/*id - user id*/
-router.get("/:id", auth, async (req, res) => {
+router.get("/", auth, async (req, res) => {
   try {
     const booking = await Booking.find({ user: req.user.id });
     if (!booking.length)
