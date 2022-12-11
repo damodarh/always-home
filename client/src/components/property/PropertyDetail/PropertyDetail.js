@@ -58,7 +58,7 @@ const PropertyDetail = (props) => {
                   )
                 : "img/no_img.jpg"
             }`}
-            className='rounded title-image'
+            className='rounded title-image Pic_prop'
             alt='main'
           />
         </div>
@@ -71,7 +71,7 @@ const PropertyDetail = (props) => {
                     <img
                       src={`data:${image.contentType};base64,
               ${_arrayBufferToBase64(image.data.data)}`}
-                      className='rounded sub-image'
+                      className='rounded sub-image Pic_prop'
                       alt='other'
                     />
                   </div>

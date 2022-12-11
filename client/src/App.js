@@ -70,7 +70,7 @@ function App() {
               </PrivateRoute>
             </div>
           </Switch>
-          <AlwaysHomeFooter />
+          <AlwaysHomeFooter />  
         </div>
       </BrowserRouter>
     </Provider>
