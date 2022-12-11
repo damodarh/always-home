@@ -220,3 +220,98 @@ body {
   height: 100%;
   width: 100%;
 }
+
+/*  ************************************LANDING PAGE**********************************************  */
+.App{
+  background: url("../public/img/bg10.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-left: -11%;
+  
+
+}
+
+.x-large
+{
+  color: yellow;
+  text-align: center;
+  font-weight: bold;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.lead{
+  text-align: center;
+  font-weight: bold;
+  color: rgb(246, 251, 246);
+}
+
+.landing-inner { 
+  height: 400px;
+  position: relative;
+  
+}
+
+.buttons {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%; 
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  
+}
+
+.btn1{
+  /* margin-right: 50px; */
+  background-color: coral;
+  border-color: coral;
+}
+
+.btn2{
+  margin-left: 50px;
+  background-color: coral;
+  color: white;
+  border-color: coral;
+}
+
+/*  ************************************SIGN UP PAGE**********************************************  */
+
+.Register{
+  font-weight: bold;
+  color: orange;
+  
+}
+
+.Register h1{
+  font-weight: bold;
+  color: black;
+  
+}
+
+.large {
+
+  font-weight: bold;
+  color: green;
+}
+
+.lead1{
+  font-weight: bold;
+  color: white;
+}
+
+
+/*  ************************************SIGN IN PAGE**********************************************  */
+
+.Sign_In {
+
+font-weight: bold;
+color: orange;
+}
+
+.Sign_In h1{
+  font-weight: bold;
+  color: black;
+  
+}

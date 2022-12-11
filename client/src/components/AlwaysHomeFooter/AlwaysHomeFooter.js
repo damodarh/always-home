@@ -4,7 +4,7 @@ import './AlwaysHomeFooter.scss';
 const AlwaysHomeFooter = (props) => {
 
     return (
-        <footer id="sticky-footer" className=" bg-dark text-white-50 mt-5 sticky-bottom">
+        <footer id="sticky-footer" className=" bg-dark text-white-50 sticky-bottom">
             <div className="container text-center">
                 <ul className="nav justify-content-center">
                     <li className="nav-item">

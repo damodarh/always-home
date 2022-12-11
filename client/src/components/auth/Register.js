@@ -38,9 +38,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     }
 
     return (
-        <div className='w-25 ms-5 mt-3 register'>
-            <h1 className='large text-primary'>Sign Up</h1>
-            <p className='lead'>
+        <div className='w-25 ms-5 mt-3 register Register'>
+            <h1 >SIGN UP</h1>
+            <p className='lead1'>
                 <i className='fas fa-user'></i> Create Your Account
             </p>
             <form className='form' onSubmit={onSubmit} novalidate>
@@ -87,7 +87,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                     </div>
                 </div>
                 <div className='form-group required'>
-                    <label className='form-label'>Reenter Password</label>
+                    <label className='form-label'>Re-Enter Password</label>
                     <div className='mb-3'>
                         <input
                             type='password'
@@ -121,7 +121,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                     value='Register'
                 />
             </form>
-            <p className='mt-3'>
+            <p className='mt-3 link1'>
                 Already have an account? <Link to='/login'>Sign In</Link>
             </p>
         </div>

@@ -44,7 +44,7 @@ function App() {
             handleInputChange={handleInputChange}
           />
           <Switch>
-            <div className='container-fluid properties'>
+            <div className='properties'>
               <Alert />
               <Route exact path='/' component={Landing} />
               <Route exact path='/login' component={Login}></Route>

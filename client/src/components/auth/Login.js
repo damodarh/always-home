@@ -26,9 +26,9 @@ const Login = ({ login, isAuthenticated }) => {
     }
 
     return (
-        <div className='w-25 ms-5 mt-3 register'>
-            <h1 className='large text-primary'>Sign In</h1>
-            <p className='lead'>
+        <div className='w-50 ms-5 mt-3 register Sign_In'>
+            <h1>SIGN INTO YOUR ACCOUNT</h1>
+            <p className='lead1'>
                 <i className='fas fa-user'></i> Sign Into Your Account
             </p>
             <form className='form' onSubmit={onSubmit} noValidate>
