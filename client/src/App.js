@@ -19,6 +19,7 @@ import AddProperty from "./components/property/AddProperty/AddProperty";
 import Profile from "./components/Layout/Profile";
 import UpdatePropertyDetail from "./components/property/UpdatePropertyDetail/UpdatePropertyDetail";
 import Favorites from "./components/Layout/Favorites";
+import BookingHandler from "./components/booking/BookingHandler";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -63,6 +64,9 @@ function App() {
               </PrivateRoute>
               <PrivateRoute exact path='/profile'>
                 <Profile />
+              </PrivateRoute>
+              <PrivateRoute exact path='/booking'>
+                <BookingHandler />
               </PrivateRoute>
             </div>
           </Switch>

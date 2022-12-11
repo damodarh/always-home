@@ -1,6 +1,6 @@
 import React from "react";
+import { useHistory } from "react-router";
 import "./PropertyDetail.scss";
-
 
 const PropertyDetail = (props) => {
   const property = { ...props.property };
@@ -24,9 +24,7 @@ const PropertyDetail = (props) => {
               </svg>
               <span className='ms-1'>{property.rating.toFixed(2)}</span>
               <span className='dot'>.</span>
-              <span>
-                {/* <u>{property.reviews} reviews</u> */}
-              </span>
+              <span>{/* <u>{property.reviews} reviews</u> */}</span>
             </span>
             <span className='dot'>.</span>
             <span>
@@ -42,7 +40,8 @@ const PropertyDetail = (props) => {
           <img
             src={`${
               property.images[0]
-                ? 'data:${property.images[0].contentType};base64,'+btoa(
+                ? "data:${property.images[0].contentType};base64," +
+                  btoa(
                     String.fromCharCode(
                       ...new Uint8Array(property.images[0].data.data)
                     )
@@ -190,17 +189,11 @@ const PropertyDetail = (props) => {
                   </div>
                 </div>
               </div>
-              <input 
-                        type='button' /*add onclick*/
-                        className='my-btn'
-                        value='Reserve'
-                /> 
             </div>
           </div>
         </div>
       </div>
     </div>
-    
   );
 };
 

@@ -6,7 +6,7 @@ import AlwaysHomeModal from "../../AlwaysHomeModal/AlwaysHomeModal";
 import PropertyDetail from "../PropertyDetail/PropertyDetail";
 import PropertyTile from "../PropertyTile/PropertyTile";
 import "./PropertyList.scss";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { loadUser } from "../../../actions/auth";
 
 const PropertyList = ({ searchText, auth: { user, isAuthenticated } }) => {
@@ -43,12 +43,24 @@ const PropertyList = ({ searchText, auth: { user, isAuthenticated } }) => {
     favorite: false,
   });
 
+  const history = useHistory();
+
+  const handleBooking = () => {
+    history.push({
+      pathname: "/booking",
+      state: {property: modalWindowProperty}
+    });
+    
+  };
+
   const toggleModal = (id) => {
     setIsOpen(!isOpen);
-    setModalWindowProperty(
-      properties.find((propertyModal, index) => index === id)
-    );
+      setModalWindowProperty(
+        properties.find((propertyModal, index) => index === id)
+      );
   };
+
+  
 
   const filter = (propertyList) => {
     return propertyList.filter((property) => {
@@ -79,7 +91,7 @@ const PropertyList = ({ searchText, auth: { user, isAuthenticated } }) => {
         : axios
             .put(`/api/users/favorites/${favProp._id}`)
             .then((res) => console.log(res));
-        loadUser()
+      loadUser();
     } else alert("Authenticate first");
   };
 
@@ -107,8 +119,12 @@ const PropertyList = ({ searchText, auth: { user, isAuthenticated } }) => {
           modalBodyClassName='modal-body'
           id='detailModal'
           label='detailModalLabel'
+          propDetail={true}
+          handleBooking={handleBooking}
         >
-          <PropertyDetail property={modalWindowProperty} />
+          <PropertyDetail
+            property={modalWindowProperty}
+          />
         </AlwaysHomeModal>
       }
     </div>
