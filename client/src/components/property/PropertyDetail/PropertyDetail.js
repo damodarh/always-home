@@ -192,7 +192,7 @@ const PropertyDetail = (props) => {
               </div>
               <input 
                         type='button' /*add onclick*/
-                        className='btn'
+                        className='my-btn'
                         value='Reserve'
                 /> 
             </div>
