@@ -8,13 +8,15 @@ import PropertyTile from "../PropertyTile/PropertyTile";
 import "./PropertyList.scss";
 import { Link, useHistory } from "react-router-dom";
 import { loadUser } from "../../../actions/auth";
+import Spinner from "../../Layout/Spinner";
 
 const PropertyList = ({ searchText, auth: { user, isAuthenticated } }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [properties, setProperties] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("/api/properties").then((resp) => setProperties(resp.data));
+    axios.get("/api/properties").then((resp) => {setProperties(resp.data); setLoading(false)});
     // fetch('properties.json')
     //     .then((res) => res.json())
     //     .then((resp) => setProperties(resp));
@@ -99,7 +101,7 @@ const PropertyList = ({ searchText, auth: { user, isAuthenticated } }) => {
 
   return (
     <div className='property-list'>
-      <div className='row'>
+      {loading ? <Spinner /> : <div className='row'>
         {filter(properties).map((property, index) => (
           <PropertyTile
             property={property}
@@ -110,7 +112,7 @@ const PropertyList = ({ searchText, auth: { user, isAuthenticated } }) => {
             isAuthenticated={isAuthenticated}
           />
         ))}
-      </div>
+      </div>}
       {
         <AlwaysHomeModal
           modalTitle={"Property Details"}

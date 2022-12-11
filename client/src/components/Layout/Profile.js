@@ -4,15 +4,19 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { setAlert } from "../../actions/alert";
 import { useHistory } from "react-router";
+import Spinner from "../Layout/Spinner";
 
 const Profile = ({ setAlert, auth: { user } }) => {
   const [properties, setProperties] = useState([]);
   const [bookings, setBookings] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const history = useHistory();
   useEffect(() => {
-    axios.get("/api/properties").then((resp) => setProperties(resp.data));
-    axios.get("/api/bookings").then((res) => setBookings(res.data));
+    Promise.all([
+      axios.get("/api/properties").then((resp) => setProperties(resp.data)),
+      axios.get("/api/bookings").then((res) => setBookings(res.data)),
+    ]).then((res) => setLoading(false));
   }, []);
 
   const offMarket = (property) => {
@@ -67,33 +71,37 @@ const Profile = ({ setAlert, auth: { user } }) => {
               <Fragment>
                 <h2 className='large text-primary'>My Properties</h2>
                 <ul className='list-group'>
-                  {properties.map((property, index) => {
-                    return (
-                      <li clasName='list-group-item' key={index}>
-                        <div className=''>
+                  {loading ? (
+                    <Spinner />
+                  ) : (
+                    properties.map((property, index) => {
+                      return (
+                        <li clasName='list-group-item' key={index}>
                           <div className=''>
-                            <span className=''>{property.title}</span>
-                            <button
-                              className='btn btn-primary btn-sm'
-                              onClick={() => updatePropertyDetails(property)}
-                            >
-                              Update property details
-                            </button>
-                            <button
-                              className={`btn btn-sm btn-${
-                                property.available ? "danger" : "primary"
-                              }`}
-                              onClick={() => offMarket(property)}
-                            >
-                              {property.available
-                                ? "Take property off market"
-                                : "Lease property"}
-                            </button>
+                            <div className=''>
+                              <span className=''>{property.title}</span>
+                              <button
+                                className='btn btn-primary btn-sm'
+                                onClick={() => updatePropertyDetails(property)}
+                              >
+                                Update property details
+                              </button>
+                              <button
+                                className={`btn btn-sm btn-${
+                                  property.available ? "danger" : "primary"
+                                }`}
+                                onClick={() => offMarket(property)}
+                              >
+                                {property.available
+                                  ? "Take property off market"
+                                  : "Lease property"}
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      </li>
-                    );
-                  })}
+                        </li>
+                      );
+                    })
+                  )}
                 </ul>
               </Fragment>
             )}
@@ -103,27 +111,37 @@ const Profile = ({ setAlert, auth: { user } }) => {
               <div class='container network_wrapper col-sm p-2 '>
                 <div class='card'>
                   <div class='card-header'>
-                    <h5 class='text-primary card-title'>My Bookings</h5>
-                    <ul
-                      class='nav nav-tabs card-header-tabs'
-                      data-bs-tabs='tabs'
-                    >
-                      <li class='nav-item'>
-                        <a
-                          class='nav-link active'
-                          aria-current='true'
-                          data-bs-toggle='tab'
-                          href='#dhcp'
+                    {loading ? (
+                      <Spinner />
+                    ) : (
+                      <Fragment>
+                        <h5 class='text-primary card-title'>My Bookings</h5>
+                        <ul
+                          class='nav nav-tabs card-header-tabs'
+                          data-bs-tabs='tabs'
                         >
-                          Completed
-                        </a>
-                      </li>
-                      <li class='nav-item'>
-                        <a class='nav-link' data-bs-toggle='tab' href='#static'>
-                          Cancelled
-                        </a>
-                      </li>
-                    </ul>
+                          <li class='nav-item'>
+                            <a
+                              class='nav-link active'
+                              aria-current='true'
+                              data-bs-toggle='tab'
+                              href='#dhcp'
+                            >
+                              Completed
+                            </a>
+                          </li>
+                          <li class='nav-item'>
+                            <a
+                              class='nav-link'
+                              data-bs-toggle='tab'
+                              href='#static'
+                            >
+                              Cancelled
+                            </a>
+                          </li>
+                        </ul>
+                      </Fragment>
+                    )}
                   </div>
                   <div class='card-body tab-content'>
                     <div class='tab-pane active' id='dhcp'>

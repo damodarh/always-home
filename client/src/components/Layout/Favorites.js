@@ -3,9 +3,11 @@ import { connect } from "react-redux";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { loadUser } from "../../actions/auth";
+import Spinner from "./Spinner";
 
 const Favorites = (props) => {
   const [favorites, setFavorites] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     loadUser();
@@ -13,6 +15,7 @@ const Favorites = (props) => {
       .get(`/api/properties/favorites/${props.user.favorites.join(",")}`)
       .then((res) => {
         setFavorites(res.data);
+        setLoading(false);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -26,7 +29,7 @@ const Favorites = (props) => {
   return (
     <div>
       <h2 className='large text-primary mt-3'>Favorites</h2>
-      <ul className="list-group">
+      {loading ? <Spinner /> : <ul className="list-group">
       {favorites.map((favorite) => {
         return (
           <li className="list-group-item border-0">
@@ -42,7 +45,7 @@ const Favorites = (props) => {
           </li>
         );
       })}
-      </ul>
+      </ul>}
     </div>
   );
 };
