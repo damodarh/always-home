@@ -38,7 +38,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     }
 
     return (
-        <div className='w-25 ms-5 mt-3 register Register'>
+        <div className='w-50 ms-5 mt-3 register Register'>
             <h1 >SIGN UP</h1>
             <p className='lead1'>
                 <i className='fas fa-user'></i> Create Your Account

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import PropTypes from "prop-types";
 import AlwaysHomeModal from "../../AlwaysHomeModal/AlwaysHomeModal";
@@ -9,14 +10,31 @@ import "./PropertyList.scss";
 import { Link, useHistory } from "react-router-dom";
 import { loadUser } from "../../../actions/auth";
 import Spinner from "../../Layout/Spinner";
+import Error from "../../Layout/Error";
 
 const PropertyList = ({ searchText, auth: { user, isAuthenticated } }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axios.get("/api/properties").then((resp) => {setProperties(resp.data); setLoading(false)});
+    axios
+      .get("/api/properties")
+      .then((resp) => {
+        setProperties(
+          resp.data.map((property) => {
+            return user.favorites.includes(property._id)
+              ? { ...property, favorite: true }
+              : property;
+          })
+        );
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
     // fetch('properties.json')
     //     .then((res) => res.json())
     //     .then((resp) => setProperties(resp));
@@ -50,19 +68,16 @@ const PropertyList = ({ searchText, auth: { user, isAuthenticated } }) => {
   const handleBooking = () => {
     history.push({
       pathname: "/booking",
-      state: {property: modalWindowProperty}
+      state: { property: modalWindowProperty },
     });
-    
   };
 
   const toggleModal = (id) => {
     setIsOpen(!isOpen);
-      setModalWindowProperty(
-        properties.find((propertyModal, index) => index === id)
-      );
+    setModalWindowProperty(
+      properties.find((propertyModal, index) => index === id)
+    );
   };
-
-  
 
   const filter = (propertyList) => {
     return propertyList.filter((property) => {
@@ -89,11 +104,10 @@ const PropertyList = ({ searchText, auth: { user, isAuthenticated } }) => {
       favProp.favorite
         ? axios
             .put(`/api/users/favorites/remove/${favProp._id}`)
-            .then((res) => console.log(res))
+            .then((res) => dispatch(loadUser()))
         : axios
             .put(`/api/users/favorites/${favProp._id}`)
-            .then((res) => console.log(res));
-      loadUser();
+            .then((res) => dispatch(loadUser()));
     } else alert("Authenticate first");
   };
 
@@ -101,18 +115,32 @@ const PropertyList = ({ searchText, auth: { user, isAuthenticated } }) => {
 
   return (
     <div className='property-list'>
-      {loading ? <Spinner /> : <div className='row'>
-        {filter(properties).map((property, index) => (
-          <PropertyTile
-            property={property}
-            id={index}
-            key={index}
-            controlFavoritesList={controlFavoritesList}
-            toggleModal={toggleModal}
-            isAuthenticated={isAuthenticated}
-          />
-        ))}
-      </div>}
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div className='row'>
+          {filter(properties).length === 0 ? (
+            <Error
+              message={"No properties here!"}
+              status={"No properties here!"}
+              statusMessage={"Add properties or refine your search"}
+              showHome={false}
+              showOops={false}
+            />
+          ) : (
+            filter(properties).map((property, index) => (
+              <PropertyTile
+                property={property}
+                id={index}
+                key={index}
+                controlFavoritesList={controlFavoritesList}
+                toggleModal={toggleModal}
+                isAuthenticated={isAuthenticated}
+              />
+            ))
+          )}
+        </div>
+      )}
       {
         <AlwaysHomeModal
           modalTitle={"Property Details"}
@@ -124,9 +152,7 @@ const PropertyList = ({ searchText, auth: { user, isAuthenticated } }) => {
           propDetail={true}
           handleBooking={handleBooking}
         >
-          <PropertyDetail
-            property={modalWindowProperty}
-          />
+          <PropertyDetail property={modalWindowProperty} />
         </AlwaysHomeModal>
       }
     </div>

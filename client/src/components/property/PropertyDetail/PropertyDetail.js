@@ -5,15 +5,15 @@ import "./PropertyDetail.scss";
 const PropertyDetail = (props) => {
   const property = { ...props.property };
 
-  const _arrayBufferToBase64 = ( buffer ) => {
-    var binary = '';
-    var bytes = new Uint8Array( buffer );
+  const _arrayBufferToBase64 = (buffer) => {
+    var binary = "";
+    var bytes = new Uint8Array(buffer);
     var len = bytes.byteLength;
     for (var i = 0; i < len; i++) {
-        binary += String.fromCharCode( bytes[ i ] );
+      binary += String.fromCharCode(bytes[i]);
     }
-    return window.btoa( binary );
-  }
+    return window.btoa(binary);
+  };
 
   return (
     <div className='property-detail'>
@@ -50,15 +50,11 @@ const PropertyDetail = (props) => {
           <img
             src={`${
               property.images[0]
-                ? "data:${property.images[0].contentType};base64," +
-                  btoa(
-                    String.fromCharCode(
-                      ...new Uint8Array(property.images[0].data.data)
-                    )
-                  )
+                ? `data:${property.images[0].contentType};base64,
+                ${_arrayBufferToBase64(property.images[0].data.data)}`
                 : "img/no_img.jpg"
             }`}
-            className='rounded title-image'
+            className='rounded title-image Pic_edit'
             alt='main'
           />
         </div>
@@ -67,11 +63,11 @@ const PropertyDetail = (props) => {
             {property.images.length !== 0 ? (
               property.images.slice(1).map((image, id) => {
                 return (
-                  <div className='col-md-6' key={id}>
+                  <div className='col-lg-6' key={id}>
                     <img
                       src={`data:${image.contentType};base64,
               ${_arrayBufferToBase64(image.data.data)}`}
-                      className='rounded sub-image'
+                      className='rounded sub-image Pic_edit'
                       alt='other'
                     />
                   </div>
@@ -79,7 +75,7 @@ const PropertyDetail = (props) => {
               })
             ) : (
               <div className={`carousel-item ${"active"}`}>
-                <div className='card-image'>
+                <div className='card-image '>
                   <img
                     src={"img/no_img.jpg"}
                     className='card-img-top'

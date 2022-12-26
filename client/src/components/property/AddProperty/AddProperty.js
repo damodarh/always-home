@@ -120,7 +120,7 @@ const AddProperty = ({ setAlert }) => {
 
   return (
     <div>
-      <div className='w-75 ms-5 mt-3 register'>
+      <div className='w-75 ms-5 mt-3 register Register'>
         <h1 className='large text-primary'>Add Property</h1>
         <form
           className='form'

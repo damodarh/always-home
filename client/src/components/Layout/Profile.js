@@ -66,37 +66,41 @@ const Profile = ({ setAlert, auth: { user } }) => {
     <div clasName='container'>
       <div className='row'>
         <div className='col-xs-6 w-50'>
-          <div className='w-75'>
+          <div>
             {user && user.isHost && (
               <Fragment>
-                <h2 className='large text-primary'>My Properties</h2>
-                <ul className='list-group'>
+                <h2 className='large  Item_style'>MY PROPERTIES</h2>
+                <ul className='list-group Item_Style'>
                   {loading ? (
                     <Spinner />
                   ) : (
                     properties.map((property, index) => {
                       return (
-                        <li clasName='list-group-item' key={index}>
-                          <div className=''>
-                            <div className=''>
-                              <span className=''>{property.title}</span>
-                              <button
-                                className='btn btn-primary btn-sm'
-                                onClick={() => updatePropertyDetails(property)}
-                              >
-                                Update property details
-                              </button>
-                              <button
-                                className={`btn btn-sm btn-${
-                                  property.available ? "danger" : "primary"
-                                }`}
-                                onClick={() => offMarket(property)}
-                              >
-                                {property.available
-                                  ? "Take property off market"
-                                  : "Lease property"}
-                              </button>
-                            </div>
+                        <li
+                          clasName='list-group-item'
+                          style={{ marginBottom: "3%" }}
+                          key={index}
+                        >
+                          <div className='row'>
+                            <span className='col-5'>{property.title}</span>
+                            <button
+                              className='btn btn-primary btn-sm button1 mt-0 col-2'
+                              style={{ marginLeft: "0%" }}
+                              onClick={() => updatePropertyDetails(property)}
+                            >
+                              Update property details
+                            </button>
+                            <button
+                              className={`button1 btn btn-sm btn-${
+                                property.available ? "danger" : "primary"
+                              } mt-0 col-2`}
+                              style={{ marginLeft: "5%" }}
+                              onClick={() => offMarket(property)}
+                            >
+                              {property.available
+                                ? "Take property off market"
+                                : "Lease property"}
+                            </button>
                           </div>
                         </li>
                       );
@@ -115,12 +119,12 @@ const Profile = ({ setAlert, auth: { user } }) => {
                       <Spinner />
                     ) : (
                       <Fragment>
-                        <h5 class='text-primary card-title'>My Bookings</h5>
+                        <h5 class='Item_style1 card-title'>MY BOOKINGS</h5>
                         <ul
-                          class='nav nav-tabs card-header-tabs'
+                          class='nav nav-tabs card-header-tabs Item_Style'
                           data-bs-tabs='tabs'
                         >
-                          <li class='nav-item'>
+                          <li class='nav-item '>
                             <a
                               class='nav-link active'
                               aria-current='true'
@@ -143,7 +147,7 @@ const Profile = ({ setAlert, auth: { user } }) => {
                       </Fragment>
                     )}
                   </div>
-                  <div class='card-body tab-content'>
+                  <div class='card-body tab-content List_Style'>
                     <div class='tab-pane active' id='dhcp'>
                       {bookings
                         .filter(
@@ -171,10 +175,12 @@ const Profile = ({ setAlert, auth: { user } }) => {
         <div className='col-xs-6 w-50'>
           <div className='justify-content-center row'>
             <div className='ms-auto panel panel-default'>
-              <h2 className='large text-primary'>My Info</h2>
-              <div>Name: {user.name}</div>
-              <div>Email: {user.email}</div>
-              <div>Account Type: {user.isHost ? "Host" : "Guest"}</div>
+              <h2 className='large Item_style'>MY INFO</h2>
+              <div className='Item_Style'>Name: {user.name}</div>
+              <div className='Item_Style'>Email: {user.email}</div>
+              <div className='Item_Style'>
+                Account Type: {user.isHost ? "Host" : "Guest"}
+              </div>
             </div>
           </div>
         </div>
