@@ -111,22 +111,22 @@ const Profile = ({ setAlert, auth: { user } }) => {
             )}
           </div>
           <div className='w-75 mt-5 pt-5'>
-            <div class='container shadow py-2'>
-              <div class='container network_wrapper col-sm p-2 '>
-                <div class='card'>
-                  <div class='card-header'>
+            <div className='container shadow py-2'>
+              <div className='container network_wrapper col-sm p-2 '>
+                <div className='card'>
+                  <div className='card-header'>
                     {loading ? (
                       <Spinner />
                     ) : (
                       <Fragment>
-                        <h5 class='Item_style1 card-title'>MY BOOKINGS</h5>
+                        <h5 className='Item_style1 card-title'>MY BOOKINGS</h5>
                         <ul
-                          class='nav nav-tabs card-header-tabs Item_Style'
+                          className='nav nav-tabs card-header-tabs Item_Style'
                           data-bs-tabs='tabs'
                         >
-                          <li class='nav-item '>
+                          <li className='nav-item '>
                             <a
-                              class='nav-link active'
+                              className='nav-link active'
                               aria-current='true'
                               data-bs-toggle='tab'
                               href='#dhcp'
@@ -134,9 +134,9 @@ const Profile = ({ setAlert, auth: { user } }) => {
                               Completed
                             </a>
                           </li>
-                          <li class='nav-item'>
+                          <li className='nav-item'>
                             <a
-                              class='nav-link'
+                              className='nav-link'
                               data-bs-toggle='tab'
                               href='#static'
                             >
@@ -147,8 +147,8 @@ const Profile = ({ setAlert, auth: { user } }) => {
                       </Fragment>
                     )}
                   </div>
-                  <div class='card-body tab-content List_Style'>
-                    <div class='tab-pane active' id='dhcp'>
+                  <div className='card-body tab-content List_Style'>
+                    <div className='tab-pane active' id='dhcp'>
                       {bookings
                         .filter(
                           (booking) => booking.bookingStatus === "completed"
@@ -157,7 +157,7 @@ const Profile = ({ setAlert, auth: { user } }) => {
                           return <div>{booking.title}</div>;
                         })}
                     </div>
-                    <div class='tab-pane' id='static'>
+                    <div className='tab-pane' id='static'>
                       {bookings
                         .filter(
                           (booking) => booking.bookingStatus === "cancelled"

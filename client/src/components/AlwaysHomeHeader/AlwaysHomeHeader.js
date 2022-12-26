@@ -17,20 +17,20 @@ const AlwaysHomeHeader = ({
       {user && user.isHost && (
         <li className='nav-item'>
           <Link className='nav-link text-black' to='/add-property'>
-            <i class='fa fa-thin fa-building'></i>{" "}
+            <i className='fa fa-thin fa-building'></i>{" "}
             <span className='ms-2'>Host Property</span>
           </Link>
         </li>
       )}
       <li className='nav-item'>
         <Link className='nav-link text-black' to='/profile'>
-          <i class='fa fa-thin fa-user'></i>{" "}
+          <i className='fa fa-thin fa-user'></i>{" "}
           <span className='ms-2'>Profile</span>
         </Link>
       </li>
       <li className='nav-item'>
         <Link className='nav-link text-black' to='/favorites'>
-          <i class='fa fa-thin fa-star'></i>{" "}
+          <i className='fa fa-thin fa-star'></i>{" "}
           <span className='ms-2'>Favorites</span>
         </Link>
       </li>
@@ -62,7 +62,7 @@ const AlwaysHomeHeader = ({
           aria-current='page'
           to='/login'
         >
-          <i class='fas fa-light fa-arrow-right-to-bracket'></i>{" "}
+          <i className='fas fa-light fa-arrow-right-to-bracket'></i>{" "}
           <span className='ms-2'>Login</span>
         </Link>
       </li>

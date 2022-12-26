@@ -11,10 +11,6 @@
   
 }
 
-.lead{
-  text-align: center;
-  
-}
 .landing-inner { 
   /* height: 400px; */
   position: relative;
@@ -314,12 +310,6 @@ body {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.lead{
-  text-align: center;
-  font-weight: bold;
-  color: rgb(246, 251, 246);
-}
-
 .landing-inner { 
   height: 500px;
   position: relative;
@@ -371,7 +361,6 @@ body {
 
 .lead1{
   font-weight: bold;
-  color: white;
 }
 
 

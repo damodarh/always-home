@@ -45,7 +45,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             </p>
             <form className='form' onSubmit={onSubmit} novalidate>
                 <div className='form-group required'>
-                    <label class='form-label'>Name</label>
+                    <label className='form-label'>Name</label>
                     <div className='mb-3'>
                         <input
                             type='text'
