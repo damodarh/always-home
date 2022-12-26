@@ -102,3 +102,9 @@ footer .quick-links {
   color: white;
   padding: 2rem 0;
 }
+
+#sticky-footer {
+  position:static;
+  left: 0 ; right: 0; bottom: 0;
+
+}

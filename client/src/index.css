@@ -1,4 +1,76 @@
 /* Global Styles */
+
+@media only screen and (min-width: 1024px) {
+  .container header .header-nav-area #nav_container  {
+    display:flex;
+  }
+  .x-large
+{
+  
+  text-align: center;
+  
+}
+
+.lead{
+  text-align: center;
+  
+}
+.landing-inner { 
+  /* height: 400px; */
+  position: relative;
+  
+}
+
+.buttons {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%; 
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  
+}
+}
+
+@media only screen and (min-width: 360px) {
+  .container header .header-nav-area #nav_container  {
+    display:flex;
+  }
+  .x-large
+{
+  
+  text-align: center;
+  
+}
+
+.lead{
+  text-align: center;
+  vertical-align: middle;
+  
+}
+.landing-inner { 
+  height: 1000px; 
+  position: relative;
+  
+}
+
+
+.btn1{
+  margin-right: 50px; 
+  background-color: coral;
+  border-color: coral;
+  vertical-align: middle;
+}
+
+.btn2{
+   margin-top: 5px; 
+
+  background-color: coral;
+  color: white;
+  border-color: coral;
+}
+}
+
 :root {
   --primary-color: #17a2b8;
   --dark-color: #343a40;
@@ -229,7 +301,8 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   margin-left: -11%;
-  
+  overflow: scroll;
+  overflow-x:hidden;
 
 }
 
@@ -248,7 +321,7 @@ body {
 }
 
 .landing-inner { 
-  height: 400px;
+  height: 500px;
   position: relative;
   
 }
@@ -264,13 +337,13 @@ body {
 }
 
 .btn1{
-  /* margin-right: 50px; */
+   /* margin-right: 50px;  */
   background-color: coral;
   border-color: coral;
 }
 
 .btn2{
-  margin-left: 50px;
+  margin-left: 10px;
   background-color: coral;
   color: white;
   border-color: coral;

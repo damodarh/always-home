@@ -71,14 +71,10 @@
         padding-top: 1.5rem;
     }
 
-    .Pic_edit{
-
-        width: 200px;
-  height: 200px;
-  vertical-align: middle;
-    }
-
-    .row{
-        display:flex;
+    .Pic_prop{
+        width: 100px;
+        height: 100px;
+        align-self: center;
+        margin-left: 150px;
     }
 }

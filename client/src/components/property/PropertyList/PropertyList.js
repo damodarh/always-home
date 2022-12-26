@@ -40,30 +40,30 @@ const PropertyList = ({ searchText, auth: { user, isAuthenticated } }) => {
     //     .then((resp) => setProperties(resp));
   }, []);
 
-  const [modalWindowProperty, setModalWindowProperty] = useState({
-    title: "",
-    city: "",
-    state: "",
-    country: "",
-    zip_code: 0,
-    host: "",
-    reviews: 0,
-    pricePerNight: 0,
-    cleaningFee: 0,
-    serviceFee: 0,
-    amenities: [],
-    bedroom: 0,
-    beds: 0,
-    bath: 0,
-    images: [],
-    rating: 0,
-    avgCost: 0,
-    available: true,
-    distance: "",
-    favorite: false,
-  });
+//   const [modalWindowProperty, setModalWindowProperty] = useState({
+//     title: "",
+//     city: "",
+//     state: "",
+//     country: "",
+//     zip_code: 0,
+//     host: "",
+//     reviews: 0,
+//     pricePerNight: 0,
+//     cleaningFee: 0,
+//     serviceFee: 0,
+//     amenities: [],
+//     bedroom: 0,
+//     beds: 0,
+//     bath: 0,
+//     images: [],
+//     rating: 0,
+//     avgCost: 0,
+//     available: true,
+//     distance: "",
+//     favorite: false,
+//   });
 
-  const history = useHistory();
+//   const history = useHistory();
 
   const handleBooking = () => {
     history.push({
@@ -111,7 +111,7 @@ const PropertyList = ({ searchText, auth: { user, isAuthenticated } }) => {
     } else alert("Authenticate first");
   };
 
-  if (!isAuthenticated) return <Link to='/login' />;
+//   if (!isAuthenticated) return <Link to='/login' />;
 
   return (
     <div className='property-list'>
@@ -159,12 +159,12 @@ const PropertyList = ({ searchText, auth: { user, isAuthenticated } }) => {
   );
 };
 
-PropertyList.propTypes = {
-  auth: PropTypes.object,
-};
+// PropertyList.propTypes = {
+//   auth: PropTypes.object,
+// };
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-});
+// const mapStateToProps = (state) => ({
+//   auth: state.auth,
+// });
 
-export default connect(mapStateToProps, {})(PropertyList);
+// export default connect(mapStateToProps, {})(PropertyList);
