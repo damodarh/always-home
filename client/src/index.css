@@ -223,7 +223,7 @@ body {
 
 /*  ************************************LANDING PAGE**********************************************  */
 .App{
-  background: url("../public/img/bg10.jpg");
+  /* background: url("../public/img/bg10.jpg"); */
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -314,4 +314,43 @@ color: orange;
   font-weight: bold;
   color: black;
   
+}
+
+/*  ************************************ADD PROPERTY**********************************************  */
+
+.button1
+{
+  margin-left: 8px;
+  color: black;
+  width: fit-content;
+  justify-content: center;
+  font-weight: bold;
+  background-color: orange;
+  border-color: orange;
+}
+
+.Item_style{
+  color: black;
+  font-size: 30px;
+  margin-left: 30px;
+}
+
+.Item_style1{
+  color: black;
+  font-size: 30px;
+  margin-left: 30px;
+  text-align: center;
+}
+
+.Item_Style{
+  color: rgb(115, 6, 81);
+  font-weight: bold;
+  font-size: 25px;
+  margin-top: 30px;
+  list-style-type: none;
+}
+
+.List_Style{
+  color: #c4302b;
+  font-weight: bold;
 }
